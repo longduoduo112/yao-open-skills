@@ -1,92 +1,93 @@
 # Yao Game Theory Skill
 
-`yao-gametheory-skill` is a game-theory strategy-report skill for competitive, negotiation, channel, platform, M&A, financing, competitor-response, alliance, and regulator-facing decisions.
+[English README](README.en.md)
 
-It is not a textbook explainer. It is built for situations where our best move depends on how other players may react.
+`yao-gametheory-skill` 是一个面向竞争、谈判、渠道、平台、并购、融资、竞品反击、联盟合作和监管沟通的博弈论战略报告 Skill。
 
-## Best-Fit Scenarios
+它不是博弈论教材，而是用于处理这类问题：我们的最佳动作，取决于其他玩家接下来会怎么反应。
 
-Use it for strategic interactions such as:
+## 适用场景
 
-- price wars and pricing response
-- channel conflict and channel bundling
-- competitor retaliation and free-version launches
-- platform ecosystem rules and incentives
-- financing and commercial negotiation
-- M&A bidding and auction-like decisions
-- market entry and entry deterrence
-- alliances, partner trust, and cooperation design
-- regulator communication and public commitments
+适合所有“我们的动作会引发对手反应”的战略互动场景：
 
-## Design Principle
+- 价格战和定价应对
+- 渠道冲突和渠道绑定
+- 竞品反击和免费版本发布
+- 平台生态规则、补贴和激励设计
+- 融资谈判和商务谈判
+- 并购竞价、招投标和类拍卖决策
+- 市场进入和进入威慑
+- 联盟合作、伙伴信任和合作机制设计
+- 监管沟通和公开承诺
 
-The core design principle is simple:
+## 设计原理
 
-1. Identify players.
-2. Map each player's available strategies.
-3. Estimate payoffs and constraints.
-4. Model timing, information, signals, and commitments.
-5. Route the case to the right game-theory framework combination.
-6. Convert the model into an executive strategy report.
+核心设计原理很简单：
 
-The skill focuses on three questions:
+1. 识别玩家。
+2. 梳理每个玩家可选的策略。
+3. 估计收益、约束和风险。
+4. 建模行动时序、信息、信号和承诺。
+5. 路由到合适的博弈论框架组合。
+6. 把模型转成管理层可直接使用的战略报告。
 
-- What will opponents probably do next?
-- Are our commitments credible?
-- Which strategy remains robust after opponent reactions?
+这个 Skill 重点回答三个问题：
 
-## Processing Logic
+- 对手可能怎么反应？
+- 我们的承诺动作是否可信？
+- 哪个策略在对手反应之后仍然更稳？
 
-The skill first detects the strategic structure of the case, then combines a primary game-theory framework with secondary lenses.
+## 处理逻辑
 
-Common routing combinations include:
+Skill 会先识别案例的战略结构，再组合一个主框架和若干辅助视角。
 
-- price war: Bertrand + prisoner's dilemma + repeated game + credible commitment
-- channel conflict: coalition game + repeated game + bargaining + signaling
-- platform ecosystem: coordination + network effects + mechanism design
-- M&A bidding: auction + bargaining + signaling + winner's curse
-- financing negotiation: bargaining + signaling + outside option + sequential concessions
-- market entry: entry deterrence + Stackelberg + credible threat + incomplete information
-- regulator communication: sequential game + signaling + reputation
+常见路由组合包括：
 
-The framework catalog covers Nash equilibrium, zero-sum and non-zero-sum games, coordination games, chicken/hawk-dove, stag hunt, entry deterrence, Stackelberg, Bertrand/Cournot, signaling, repeated games, bargaining, auctions, coalition games, and mechanism design.
+- 价格战：Bertrand + 囚徒困境 + 重复博弈 + 可信承诺
+- 渠道冲突：联盟博弈 + 重复博弈 + 讨价还价 + 信号博弈
+- 平台生态：协调博弈 + 网络效应 + 机制设计
+- 并购竞价：拍卖博弈 + 讨价还价 + 信号博弈 + 赢家诅咒
+- 融资谈判：讨价还价 + 信号博弈 + 外部选项 + 顺序让步
+- 市场进入：进入威慑 + Stackelberg + 可信威胁 + 不完全信息
+- 监管沟通：顺序博弈 + 信号博弈 + 声誉机制
 
-## Output Highlights
+框架目录覆盖：纳什均衡、零和与非零和博弈、协调博弈、鹰鸽博弈、猎鹿博弈、进入威慑、Stackelberg、Bertrand/Cournot、信号博弈、重复博弈、讨价还价、拍卖、联盟博弈和机制设计。
 
-The report puts action before theory:
+## 输出亮点
 
-- recommended move
-- opponent reaction map
-- payoff matrix
-- credible commitment checks
-- signal-quality checks
-- possible equilibria
-- strategy-readiness score
-- sensitivity analysis
-- next information to collect
-- update triggers for future opponent moves
+报告会把行动建议放在理论之前：
 
-It exports synchronized `Markdown`, `HTML`, `DOCX`, `PDF`, and canonical `JSON` from the same structured input.
+- 推荐动作
+- 对手反应地图
+- 收益矩阵
+- 可信承诺检查
+- 信号质量检查
+- 可能均衡
+- 策略准备度评分
+- 敏感性分析
+- 下一步最值得补的信息
+- 后续对手动作的更新触发器
 
-## Quick Start
+所有输出都来自同一份结构化输入，支持同步导出 `Markdown`、`HTML`、`DOCX`、`PDF` 和 canonical `JSON`。
+
+## 快速开始
 
 ```bash
 python3 scripts/generate_report_bundle.py input/price_war_case.json reports/price-war-case
 ```
 
-To merge a later opponent move and regenerate the report:
+如果后续有新的对手动作，可以并入原案例后重新生成报告：
 
 ```bash
 python3 scripts/generate_report_bundle.py input/price_war_case.json reports/price-war-refresh --update input/opponent_update.template.json
 ```
 
-## Key Files
+## 关键文件
 
-- `SKILL.md`: skill entrypoint
-- `references/framework-catalog.md`: framework catalog and AI application router
-- `references/game-model-playbook.md`: modeling playbook for players, strategies, payoffs, timing, and equilibrium logic
-- `references/commitment-signal-checklist.md`: credibility and signal-quality checks
-- `references/dynamic-iteration-loop.md`: opponent-update workflow
-- `scripts/generate_report_bundle.py`: report generator
-- `reports/price-war-case.*`: example report artifacts
-
+- `SKILL.md`：Skill 入口
+- `references/framework-catalog.md`：博弈论框架目录和 AI 应用路由器
+- `references/game-model-playbook.md`：玩家、策略、收益、时序和均衡建模手册
+- `references/commitment-signal-checklist.md`：承诺可信度和信号质量检查
+- `references/dynamic-iteration-loop.md`：对手动作更新流程
+- `scripts/generate_report_bundle.py`：报告生成脚本
+- `reports/price-war-case.*`：示例报告产物
