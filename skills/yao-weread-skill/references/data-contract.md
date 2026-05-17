@@ -1,3 +1,11 @@
+<!--
+Copyright © 2026 姚金刚. All rights reserved.
+Project: yao-weread-skill
+Created by: 姚金刚
+Date: 2026-05-16
+X: https://x.com/yaojingang
+-->
+
 # 数据契约
 
 本报告依赖已安装的微信读书 skill 暴露的数据。

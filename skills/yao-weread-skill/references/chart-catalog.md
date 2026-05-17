@@ -1,3 +1,11 @@
+<!--
+Copyright © 2026 姚金刚. All rights reserved.
+Project: yao-weread-skill
+Created by: 姚金刚
+Date: 2026-05-16
+X: https://x.com/yaojingang
+-->
+
 # 图表目录
 
 HTML 报告应展示 20 个以上图表模块。优先使用可用数据；当某个模块缺少源字段时，要清楚呈现空状态或降级说明。

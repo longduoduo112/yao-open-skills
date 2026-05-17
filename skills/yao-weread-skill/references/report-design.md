@@ -1,3 +1,11 @@
+<!--
+Copyright © 2026 姚金刚. All rights reserved.
+Project: yao-weread-skill
+Created by: 姚金刚
+Date: 2026-05-16
+X: https://x.com/yaojingang
+-->
+
 # 报告设计
 
 采用参考 kami 的中文长报告风格，并保持足够的信息密度，支撑可视化分析。

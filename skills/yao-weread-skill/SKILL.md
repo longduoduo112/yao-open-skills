@@ -3,6 +3,14 @@ name: yao-weread-skill
 description: 当用户需要分析微信读书阅读历史、生成读书报告、可视化阅读统计、笔记、书架、词云、热力图、雷达图，或导出精排 HTML 报告时使用。也适用于创建 AI 创业者示例阅读报告。不用于通用图书推荐，或不生成报告的原始微信读书 API 查询。
 ---
 
+<!--
+Copyright © 2026 姚金刚. All rights reserved.
+Project: yao-weread-skill
+Created by: 姚金刚
+Date: 2026-05-16
+X: https://x.com/yaojingang
+-->
+
 # Yao WeRead Skill
 
 从微信读书账号数据生成精排中文 HTML 报告。默认范围为截至今天的最近 24 个月。

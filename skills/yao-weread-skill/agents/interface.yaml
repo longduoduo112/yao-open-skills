@@ -1,3 +1,9 @@
+# Copyright © 2026 姚金刚. All rights reserved.
+# Project: yao-weread-skill
+# Created by: 姚金刚
+# Date: 2026-05-16
+# X: https://x.com/yaojingang
+
 interface:
   display_name: "Yao WeRead Skill"
   short_description: "从微信读书阅读统计、书架、笔记和划线生成精排 HTML 阅读报告"

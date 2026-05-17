@@ -1,3 +1,11 @@
+<!--
+Copyright © 2026 姚金刚. All rights reserved.
+Project: yao-weread-skill
+Created by: 姚金刚
+Date: 2026-05-16
+X: https://x.com/yaojingang
+-->
+
 # Yao WeRead Skill
 
 `yao-weread-skill` 用来把微信读书账户数据生成一份完整的个人阅读可视化报告。
