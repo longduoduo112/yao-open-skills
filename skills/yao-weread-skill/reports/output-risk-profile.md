@@ -1,25 +1,25 @@
-# Output Risk Profile
+# 输出风险画像
 
-## Top Risks
+## 主要风险
 
-1. **False precision in date ranges**  
-   `/readdata/detail` works by natural periods. The script must use daily `readTimes` when available and label approximations when it cannot.
+1. **日期范围出现伪精确**
+   `/readdata/detail` 按自然周期工作。脚本应在可用时使用每日 `readTimes`，无法精确过滤时标注近似口径。
 
-2. **Miscounting shelf size**  
-   Shelf total must include books, albums, and the article-collection entry when present.
+2. **书架规模统计错误**
+   书架总数必须包含书籍、有声专辑，以及存在时的文章收藏入口。
 
-3. **Weak word cloud quality**  
-   Chinese segmentation is not guaranteed. The script uses deterministic phrase extraction and stopwords; the report labels the result as a note/highlight phrase cloud.
+3. **词云质量不稳定**
+   中文分词不一定可用。脚本使用确定性短语抽取和停用词过滤；报告中应将结果标注为笔记/划线短语云。
 
-4. **Privacy leakage**  
-   User highlights and thoughts can be personal. Reports are local artifacts and should not be shared unless the user asks.
+4. **隐私泄露**
+   用户划线和想法可能包含个人内容。报告是本地产物，除非用户明确要求，否则不应分享。
 
-5. **Over-dashboarding**  
-   More than 20 charts can become noisy. The report groups charts by narrative section and gives each chart a caption.
+5. **图表过密导致噪音**
+   20 个以上图表容易显得嘈杂。报告应按叙事章节分组，并为每个图表提供说明。
 
-## Gates
+## 验收门槛
 
-- At least 20 chart panels are present.
-- Generated HTML has no `WEREAD_API_KEY`, `TODO`, or unresolved template token.
-- Aggregated data JSON is valid.
-- Empty charts have visible captions rather than fabricated values.
+- 至少存在 20 个图表面板。
+- 生成的 HTML 不包含 `WEREAD_API_KEY`、`TODO` 或未解析模板标记。
+- 聚合数据 JSON 合法。
+- 空图表有可见说明，不用编造值填充。

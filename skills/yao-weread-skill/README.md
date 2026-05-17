@@ -1,23 +1,23 @@
 # Yao WeRead Skill
 
-`yao-weread-skill` turns WeRead account data into a polished personal reading analytics report.
+`yao-weread-skill` 用来把微信读书账户数据生成一份完整的个人阅读可视化报告。
 
-It is designed for people who want more than a raw reading-time export: the skill collects reading rhythm, shelf assets, category preference, author and publisher bias, note density, highlight length, and high-frequency note terms, then renders them into a single Chinese HTML report.
+它不是简单导出阅读时长，而是把阅读节律、书架资产、分类偏好、作者与出版社偏好、笔记密度、划线长度和高频笔记短语汇总到一份中文 HTML 报告中，便于做年度复盘、知识管理回顾和阅读画像展示。
 
-## What It Produces
+## 输出内容
 
-- `weread-report.html`: interactive HTML report with KPI cards, narrative sections, tables, and charts.
-- `weread-report-data.json`: chart-ready aggregated data.
-- `weread-raw-summary.json`: non-secret coverage summary for verification.
+- `weread-report.html`：带 KPI 卡片、叙事分区、表格和图表的交互式 HTML 报告。
+- `weread-report-data.json`：已经聚合好的图表数据。
+- `weread-raw-summary.json`：不含密钥的覆盖范围和关键指标摘要，用于复核生成结果。
 
-The standard report contains more than 20 visual modules. The current chart catalog includes monthly reading time, reading days, weekday rhythm, cumulative reading hours, top books, category radar, category treemap, preferred authors, preferred publishers, reading/listening split, shelf composition, note type composition, notebook progress scatter, word cloud, note timeline, and highlight length distribution.
+标准报告包含 20 个以上可视化模块。当前图表目录覆盖月度阅读时长、阅读天数、星期节律、累计阅读小时、读得最久的书、分类雷达、分类矩形树图、偏好作者、偏好出版社、文字阅读与听书拆分、书架构成、笔记类型构成、阅读进度与笔记量散点图、词云、笔记时间线和划线长度分布。
 
-## Quick Start
+## 快速开始
 
-Live WeRead account report:
+真实微信读书账号报告：
 
 ```bash
-export WEREAD_API_KEY="<your_api_key>"
+export WEREAD_API_KEY="<你的_WEREAD_API_KEY>"
 
 python3 scripts/generate_weread_report.py \
   --years 2 \
@@ -26,7 +26,7 @@ python3 scripts/generate_weread_report.py \
   --output reports/generated/latest
 ```
 
-AI founder sample report:
+AI 创业者示例报告：
 
 ```bash
 python3 scripts/generate_weread_report.py \
@@ -36,29 +36,28 @@ python3 scripts/generate_weread_report.py \
   --output reports/generated/ai-founder-sample
 ```
 
-Open the generated `weread-report.html` in a browser.
+生成后用浏览器打开 `weread-report.html`。
 
-## How It Works
+## 工作逻辑
 
-1. Reads WeRead data through the installed 微信读书 skill gateway.
-2. Pulls monthly and annual reading stats from `/readdata/detail`.
-3. Pulls shelf structure from `/shelf/sync`.
-4. Pulls notebook overview from `/user/notebooks`.
-5. Pulls highlights and reviews from `/book/bookmarklist` and `/review/list/mine`.
-6. Aggregates data into a stable JSON contract.
-7. Renders a standalone HTML report with ECharts and a deterministic Chinese phrase extraction fallback.
+1. 通过已安装的微信读书 skill 网关读取数据。
+2. 从 `/readdata/detail` 获取月度和年度阅读统计。
+3. 从 `/shelf/sync` 获取书架结构。
+4. 从 `/user/notebooks` 获取有笔记的书籍概览。
+5. 从 `/book/bookmarklist` 和 `/review/list/mine` 获取划线和想法。
+6. 将接口数据聚合成稳定的 JSON 数据契约。
+7. 使用 ECharts 和确定性的中文短语抽取逻辑渲染独立 HTML 报告。
 
-## Design Notes
+## 设计说明
 
-- The report uses a warm paper, ink-blue, editorial visual system inspired by `kami`.
-- Charts are grouped by narrative section: time rhythm, reading preference, shelf assets, and notes/semantics.
-- Word cloud extraction prefers domain terms and filters common Chinese phrase fragments.
-- Book-level reading time uses `readLongest[].readTime` and does not infer reading time from shelf recency.
-- Anonymous `readLongest` rows without real book or album titles are dropped.
+- 报告采用 `kami` 风格的中文长报告视觉系统：暖纸底、墨蓝强调、编辑式层级和紧凑证据卡片。
+- 图表按叙事分区组织：时间节律、阅读偏好、书架资产、笔记与语义。
+- 词云优先保留领域词，并过滤常见中文短语碎片。
+- 书籍阅读时长使用 `readLongest[].readTime`，不从书架更新时间推断。
+- 没有真实书名或专辑名的匿名 `readLongest` 记录会被过滤。
 
-## Privacy Notes
+## 隐私说明
 
-- The script reads `WEREAD_API_KEY` from the environment and does not write it to disk.
-- Generated reports may contain personal highlights and thoughts. Do not commit real `reports/generated/latest` output to a public repository.
-- The included `examples/ai-founder-report/weread-report.html` is a public sample report.
-
+- 脚本从环境变量读取 `WEREAD_API_KEY`，不会把它写入磁盘。
+- 真实生成的报告可能包含个人划线和想法，不要把 `reports/generated/latest` 直接提交到公开仓库。
+- 仓库内置的 `examples/ai-founder-report/weread-report.html` 是公开示例报告。

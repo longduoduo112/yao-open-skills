@@ -1,44 +1,44 @@
-# Chart Catalog
+# 图表目录
 
-The HTML report should expose more than 20 chart modules. Use available data first and degrade visibly when a module lacks source fields.
+HTML 报告应展示 20 个以上图表模块。优先使用可用数据；当某个模块缺少源字段时，要清楚呈现空状态或降级说明。
 
-## Core Modules
+## 核心模块
 
-1. KPI strip: total read time, read days, books touched, note count.
-2. Monthly read time bar/line.
-3. Monthly reading days line.
-4. Reading-day duration distribution.
-5. Weekday by month heatmap.
-6. Cumulative read time area.
-7. Monthly read-stat stacked bars.
-8. Annual read-time comparison.
-9. Top books by read time.
-10. Category radar.
-11. Category read-time bar.
-12. Category treemap.
-13. Preferred authors bar.
-14. Preferred publishers bar.
-15. Reading vs listening donut.
-16. Shelf composition donut.
-17. Shelf category treemap.
-18. Finished vs unfinished shelf pie.
-19. Public/private shelf pie.
-20. Archive/booklist bar.
-21. Recent shelf activity timeline.
-22. Notebook top books bar.
-23. Note type stacked bar.
-24. Notebook progress scatter.
-25. Highlight/thought word cloud.
-26. Note timeline.
-27. Highlight length histogram.
+1. KPI 总览条：总阅读时长、阅读天数、触达书籍数、笔记数。
+2. 月度阅读时长柱线图。
+3. 月度阅读天数折线图。
+4. 阅读日时长分布图。
+5. 按月和星期展开的阅读热力图。
+6. 累计阅读时长面积图。
+7. 月度阅读统计堆叠柱图。
+8. 年度阅读时长对比图。
+9. 按阅读时长排序的书籍榜。
+10. 分类偏好雷达图。
+11. 分类阅读时长条形图。
+12. 分类阅读树图。
+13. 偏好作者条形图。
+14. 偏好出版社条形图。
+15. 阅读与听书占比环图。
+16. 书架构成环图。
+17. 书架分类树图。
+18. 已读与未读书架占比图。
+19. 公开与私密书架占比图。
+20. 归档/书单条形图。
+21. 近期书架活动时间线。
+22. 笔记书籍 Top 条形图。
+23. 笔记类型堆叠柱图。
+24. 笔记书籍进度散点图。
+25. 划线/想法词云。
+26. 笔记时间线。
+27. 划线长度直方图。
 
-## Interpretation Rules
+## 解释规则
 
-- Use `readLongest[].readTime` as book-level reading time; never infer book time from shelf recency.
-- Drop anonymous `readLongest` rows where neither book nor album metadata contains a real title.
-- Use `preferCategory[].readingTime` and `readingCount` for category modules.
-- Use `preferAuthor[].readTime` only as display text unless a numeric seconds field exists.
-- Use shelf category strings for shelf asset distribution; use annual preference categories for actual reading preference.
-- Label `mp` as article-collection entry, not a book.
-- Do not render notebook category distribution when WeRead notebook overview only returns `未分类`.
-- For word clouds, prefer known domain terms and cap the rendered terms to a smaller high-signal set when deterministic segmentation would otherwise create phrase fragments.
+- 使用 `readLongest[].readTime` 表示书籍级阅读时长；不要用书架最近活动推断单本阅读时长。
+- 当 `readLongest` 行既没有书籍标题，也没有有声专辑标题时，应剔除该匿名记录。
+- 分类模块使用 `preferCategory[].readingTime` 和 `readingCount`。
+- 除非存在数值型秒数字段，否则 `preferAuthor[].readTime` 只作为展示文本使用。
+- 书架资产分布使用书架分类字符串；真实阅读偏好使用年度偏好分类。
+- 将 `mp` 标注为文章收藏入口，不标注为书籍。
+- 当微信读书笔记总览只返回 `未分类` 时，不渲染笔记书籍分类分布。
+- 词云优先保留已知领域词；当确定性分词会产生大量短碎片时，应限制展示数量，保留更高信号的词组。

@@ -1,48 +1,48 @@
-# Data Contract
+# 数据契约
 
-This report depends on data exposed by the installed 微信读书 skill.
+本报告依赖已安装的微信读书 skill 暴露的数据。
 
-## API Sources
+## API 数据源
 
-| Source | Endpoint | Use |
+| 数据源 | 接口 | 用途 |
 |---|---|---|
-| Reading stats | `/readdata/detail` | Monthly and annual read time, read days, read stats, top books, categories, authors, publishers, reading/listening split when available |
-| Shelf | `/shelf/sync` | Book, album, article-collection counts, shelf categories, recent reading/update signals, archive counts, public/private state |
-| Notebook overview | `/user/notebooks` | Books with notes, note totals, highlights, thoughts, bookmarks, reading progress |
-| Highlight text | `/book/bookmarklist` | User highlights for word cloud, length distribution, highlight timeline |
-| Thoughts/reviews | `/review/list/mine` | User thoughts and reviews for word cloud and note timeline |
+| 阅读统计 | `/readdata/detail` | 月度和年度阅读时长、阅读天数、阅读统计、Top 书籍、分类、作者、出版社，以及可用时的阅读/听书拆分 |
+| 书架 | `/shelf/sync` | 书籍、有声专辑、文章收藏入口数量，书架分类，近期阅读/更新信号，归档数量，公开/私密状态 |
+| 笔记总览 | `/user/notebooks` | 有笔记的书、笔记总量、划线、想法、书签、阅读进度 |
+| 划线文本 | `/book/bookmarklist` | 用户划线，用于词云、长度分布、划线时间线 |
+| 想法/书评 | `/review/list/mine` | 用户想法和书评，用于词云和笔记时间线 |
 
-## Required Semantics
+## 必须遵守的语义
 
-- Reading durations are seconds. Convert to hours/minutes only at presentation time.
-- Shelf total is `books.length + albums.length + (mp exists ? 1 : 0)`.
-- Notebook total notes are `reviewCount + noteCount + bookmarkCount`.
-- Notebook pagination uses `count` plus top-level `lastSort`; do not use `params`, `offset`, or `limit`.
-- `/review/list/mine` requires lowercase `bookid`.
-- `readTimes` is detail data; use `totalReadTime` for complete periods and `readTimes` for daily/monthly visualization.
+- 阅读时长单位为秒，只在展示层转换为小时或分钟。
+- 书架总数为 `books.length + albums.length + (mp exists ? 1 : 0)`。
+- 笔记总数为 `reviewCount + noteCount + bookmarkCount`。
+- 笔记分页使用 `count` 和顶层 `lastSort`；不要使用 `params`、`offset` 或 `limit`。
+- `/review/list/mine` 需要小写 `bookid`。
+- `readTimes` 是明细数据；完整周期汇总使用 `totalReadTime`，日/月可视化使用 `readTimes`。
 
-## Default Range
+## 默认范围
 
-Default range is the most recent 24 months ending on the execution date in `Asia/Shanghai`.
+默认范围为执行日期当天向前 24 个月，时区为 `Asia/Shanghai`。
 
-Implementation:
+实现方式：
 
-1. Query every natural month overlapping the range.
-2. Use daily `readTimes` entries when available to filter exact start/end dates.
-3. Use the current natural month as partial data if the range ends inside it.
-4. Query annual data for every calendar year touched by the range for preference modules.
+1. 查询与目标范围有交集的每个自然月。
+2. 当存在每日 `readTimes` 明细时，用它过滤精确开始/结束日期。
+3. 如果范围结束在当前自然月内，则将当前自然月作为部分数据使用。
+4. 偏好模块查询范围覆盖到的每个自然年的年度数据。
 
-## Fallback Rules
+## 回退规则
 
-- If a preference field is missing, render the chart panel with an honest empty state.
-- If highlight/thought text fetch fails for one book, keep the notebook overview and record the fetch error count.
-- If word segmentation is unavailable, use deterministic phrase extraction with Chinese stopwords, domain-term preference, and n-gram filtering.
-- If the chart library fails to load, the report must still show KPI cards, tables, and textual summaries.
+- 如果偏好字段缺失，图表面板应显示明确空状态。
+- 如果某本书的划线/想法文本拉取失败，保留笔记总览数据，并记录拉取错误数量。
+- 如果中文分词不可用，使用确定性短语抽取，结合中文停用词、领域词优先和 n-gram 过滤。
+- 如果图表库加载失败，报告仍应展示 KPI 卡片、表格和文字摘要。
 
-## AI Founder Sample Mode
+## AI 创业者示例模式
 
-`--sample-ai-founder --sample-scale 5` generates an AI-founder reader sample report without calling WeRead APIs or requiring `WEREAD_API_KEY`.
+`--sample-ai-founder --sample-scale 5` 可在不调用微信读书 API、也不需要 `WEREAD_API_KEY` 的情况下生成 AI 创业者阅读报告示例。
 
-- Sample mode uses bundled reader-profile data to exercise all report modules.
-- Sample output must set `meta.sampleReport=true`.
-- Live mode must continue to use only data returned by the 微信读书 skill.
+- 示例模式使用内置读者画像数据，覆盖所有报告模块。
+- 示例输出必须设置 `meta.sampleReport=true`。
+- 真实账号模式必须继续只使用微信读书 skill 返回的数据。

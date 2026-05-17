@@ -1,48 +1,48 @@
 ---
 name: yao-weread-skill
-description: Generate live or sample WeRead visual reading reports from 微信读书 skill data. Use when asked to analyze 微信读书 reading history, create a 读书报告, visualize reading stats, notes, shelves, word clouds, heatmaps, radar charts, export a polished HTML report, or create an AI-founder sample reading report. Do not use for generic book recommendations or raw WeRead API lookup without report generation.
+description: 当用户需要分析微信读书阅读历史、生成读书报告、可视化阅读统计、笔记、书架、词云、热力图、雷达图，或导出精排 HTML 报告时使用。也适用于创建 AI 创业者示例阅读报告。不用于通用图书推荐，或不生成报告的原始微信读书 API 查询。
 ---
 
 # Yao WeRead Skill
 
-Create a polished Chinese HTML report from WeRead account data. The default scope is the most recent 24 months ending today.
+从微信读书账号数据生成精排中文 HTML 报告。默认范围为截至今天的最近 24 个月。
 
-## Inputs
+## 输入
 
-- `WEREAD_API_KEY` in the environment, using the format required by the 微信读书 skill.
-- Optional report range: `--years`, `--start`, or `--end`.
-- Optional note depth: `--max-note-books`; omit or pass `0` to process every notebook returned by WeRead.
-- Optional output directory.
-- Optional sample mode: `--sample-ai-founder --sample-scale 5`, which does not require `WEREAD_API_KEY`.
+- 环境变量 `WEREAD_API_KEY`，格式遵循微信读书 skill 的要求。
+- 可选报告范围：`--years`、`--start` 或 `--end`。
+- 可选笔记深度：`--max-note-books`；省略或传 `0` 时处理微信读书返回的全部笔记书籍。
+- 可选输出目录。
+- 可选示例模式：`--sample-ai-founder --sample-scale 5`，不需要 `WEREAD_API_KEY`。
 
-## Output
+## 输出
 
-The workflow produces:
+流程会生成：
 
-- `weread-report.html` — a kami-informed interactive HTML report.
-- `weread-report-data.json` — aggregated, chart-ready data.
-- `weread-raw-summary.json` — non-secret API shape and count summary for review.
+- `weread-report.html`：参考 kami 排版风格的交互式 HTML 报告。
+- `weread-report-data.json`：聚合后的图表数据。
+- `weread-raw-summary.json`：不含密钥的 API 结构和计数摘要，便于复核。
 
-Raw highlights and thoughts are used for aggregation. Treat report output as private unless the user explicitly asks to share or publish it.
+原始划线和想法仅用于聚合分析。除非用户明确要求分享或发布，否则报告产物应视为私有内容。
 
-## Workflow
+## 工作流
 
-1. Read the 微信读书 skill docs before calling APIs:
-   - `shelf.md` for shelf counts and public/private rules.
-   - `readdata.md` for reading-time units, period rules, and annual/monthly fields.
-   - `notes.md` for notebook pagination, note count math, and highlight/thought text.
-   - `book.md` only when book-level detail or progress is required.
-2. Run `scripts/generate_weread_report.py`.
-3. Verify generated HTML has at least 20 chart panels, no `TODO`/placeholder text, and no embedded API key.
-4. If visual verification is requested or the report is changed materially, open the generated HTML in a browser and inspect desktop and narrow widths.
+1. 调用 API 前先阅读微信读书 skill 文档：
+   - `shelf.md`：书架计数、公开/私密规则。
+   - `readdata.md`：阅读时长单位、周期规则、年度/月度字段。
+   - `notes.md`：笔记分页、笔记数计算、划线/想法文本。
+   - `book.md`：仅在需要书籍详情或阅读进度时使用。
+2. 运行 `scripts/generate_weread_report.py`。
+3. 检查生成的 HTML 至少包含 20 个图表面板，没有 `TODO`、占位文本或内嵌 API key。
+4. 如果用户要求视觉验证，或报告排版有实质变化，使用浏览器打开生成的 HTML，并检查桌面和窄屏宽度。
 
-## Command
+## 命令
 
 ```bash
 python3 scripts/generate_weread_report.py --output reports/generated
 ```
 
-Useful options:
+常用选项：
 
 ```bash
 python3 scripts/generate_weread_report.py \
@@ -51,7 +51,7 @@ python3 scripts/generate_weread_report.py \
   --output reports/generated
 ```
 
-AI founder sample report:
+AI 创业者示例报告：
 
 ```bash
 python3 scripts/generate_weread_report.py \
@@ -61,16 +61,16 @@ python3 scripts/generate_weread_report.py \
   --output reports/generated/ai-founder-sample
 ```
 
-## Report Design
+## 报告设计
 
-- Follow `references/report-design.md` for the kami-informed visual system.
-- Follow `references/chart-catalog.md` for the chart module catalog.
-- Follow `references/data-contract.md` for API field semantics and fallback rules.
+- 视觉系统遵循 `references/report-design.md`。
+- 图表模块遵循 `references/chart-catalog.md`。
+- API 字段语义和降级规则遵循 `references/data-contract.md`。
 
-## Boundaries
+## 边界
 
-- Do not invent reading events, note text, ratings, or classifications that are not present in WeRead responses.
-- The AI founder sample mode is for generating a reusable sample report without requiring a live account.
-- Do not export full book content; only user-owned highlights/thoughts and metadata available through the 微信读书 skill.
-- Do not store or print `WEREAD_API_KEY`.
-- When exact rolling-day boundaries are unavailable, clearly label monthly or annual approximations.
+- 真实账号模式下，不编造微信读书响应中不存在的阅读事件、笔记文本、评分或分类。
+- AI 创业者示例模式用于在不接入真实账号时生成可复用示例报告。
+- 不导出书籍全文；只使用用户自己的划线/想法，以及微信读书 skill 可访问的元数据。
+- 不存储或打印 `WEREAD_API_KEY`。
+- 无法获得精确滚动日期边界时，必须清楚标注月度或年度近似口径。

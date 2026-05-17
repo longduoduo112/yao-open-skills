@@ -1,30 +1,30 @@
-# Report Design
+# 报告设计
 
-Use a kami-informed Chinese long-report style with enough density for visual analytics.
+采用参考 kami 的中文长报告风格，并保持足够的信息密度，支撑可视化分析。
 
-## Visual Direction
+## 视觉方向
 
-- Canvas: warm parchment `#f5f4ed`.
-- Surfaces: ivory `#faf9f5` with warm borders.
-- Accent: ink blue `#1B365D`, used sparingly for titles, key figures, and chart emphasis.
-- Typography: serif-led headings, sans-serif functional labels and chart captions.
-- No purple gradients, glass panels, decorative blobs, or cold blue-gray dashboard chrome.
+- 页面底色：温暖纸色 `#f5f4ed`。
+- 内容表面：象牙白 `#faf9f5`，搭配暖色边框。
+- 强调色：墨蓝 `#1B365D`，仅用于标题、关键数字和图表重点。
+- 字体层级：标题偏宋体/衬线气质，功能标签和图表说明使用无衬线。
+- 不使用紫色渐变、玻璃拟态、装饰光斑或冷蓝灰仪表盘风格。
 
-## Structure
+## 结构
 
-1. Cover band with date range and generation time.
-2. Executive overview with KPI cards and key findings.
-3. Time rhythm section: monthly, daily, weekday, cumulative, annual.
-4. Reading preference section: books, categories, authors, publishers, reading/listening split.
-5. Shelf asset section: shelf composition, categories, progress, privacy, archives, recent activity.
-6. Notes and semantics section: note volume, composition, progress, word cloud, note timeline, highlight length.
-7. Appendix with data coverage, caveats, and API source summary.
+1. 封面区展示日期范围和生成时间。
+2. 总览区展示 KPI 卡片和关键发现。
+3. 时间节律区：月度、每日、星期、累计、年度。
+4. 阅读偏好区：书籍、分类、作者、出版社、阅读/听书拆分。
+5. 书架资产区：书架构成、分类、进度、公开状态、归档、近期活动。
+6. 笔记与语义区：笔记规模、类型构成、进度、词云、笔记时间线、划线长度。
+7. 附录区：数据覆盖、注意事项、API 来源摘要。
 
-## HTML Rules
+## HTML 规则
 
-- The page is interactive on screen but printable enough to read as a report.
-- Chart cards have stable dimensions and no nested-card layout.
-- Every chart has a short caption explaining the data source or fallback.
-- Empty states are explicit and quiet.
-- Do not embed absolute local file paths.
-- Do not embed the API key.
+- 页面在屏幕上可交互，同时具备可打印阅读的报告形态。
+- 图表卡片必须有稳定尺寸，不使用卡片嵌套卡片。
+- 每个图表都要有简短说明，解释数据来源或回退口径。
+- 空状态要明确且克制。
+- 不嵌入本地绝对路径。
+- 不嵌入 API key。

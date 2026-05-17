@@ -213,7 +213,7 @@
     {
       "slug": "yao-weread-skill",
       "title": "Yao WeRead Skill",
-      "summary": "Generate polished WeRead personal reading analytics reports with reading rhythm, shelf assets, category preference, note semantics, word clouds, and a standalone HTML output.",
+      "summary": "生成微信读书个人阅读可视化报告，覆盖阅读节律、书架资产、分类偏好、笔记语义、词云和独立 HTML 输出。",
       "source_local_path": "/Users/laoyao/AI Coding/03-Development/Skills/yao-weread-skill",
       "collection_path": "skills/yao-weread-skill",
       "lifecycle": "active",

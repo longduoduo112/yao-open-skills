@@ -1832,7 +1832,7 @@ def main() -> int:
     report_range = default_range(args.years, args.start, args.end)
     if args.sample_ai_founder or args.synthetic_ai_founder:
         sample_scale = args.synthetic_scale or args.sample_scale
-        print(f"Generating AI-founder sample report for {report_range.label}...")
+        print(f"正在生成 AI 创业者示例报告：{report_range.label}...")
         data = build_synthetic_ai_founder_report(report_range, sample_scale)
         html_path, data_path, summary_path = write_outputs(Path(args.output), data)
         print(f"HTML: {html_path}")
@@ -1843,7 +1843,7 @@ def main() -> int:
 
     api_key = os.environ.get("WEREAD_API_KEY")
     if not api_key:
-        print("WEREAD_API_KEY is not set. Run: export WEREAD_API_KEY=<your_api_key>", file=sys.stderr)
+        print("未设置 WEREAD_API_KEY。请先执行：export WEREAD_API_KEY=<你的_WEREAD_API_KEY>", file=sys.stderr)
         return 2
     client = WeReadClient(api_key)
 

@@ -1,7 +1,7 @@
 interface:
   display_name: "Yao WeRead Skill"
-  short_description: "Generate polished live or sample HTML reading reports from WeRead stats, shelf, notes, and highlights"
-  default_prompt: "Use $yao-weread-skill to generate my WeRead personal reading visualization report for the last 2 years, including word cloud, heatmaps, radar charts, and 20+ chart modules."
+  short_description: "从微信读书阅读统计、书架、笔记和划线生成精排 HTML 阅读报告"
+  default_prompt: "使用 $yao-weread-skill 生成我最近 2 年的微信读书个人阅读可视化报告，包含词云、热力图、雷达图和 20 个以上图表模块。"
 compatibility:
   canonical_format: "agent-skills"
   adapter_targets:

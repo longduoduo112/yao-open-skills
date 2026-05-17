@@ -1,7 +1,7 @@
 {
   "name": "yao-weread-skill",
   "version": "0.1.0",
-  "description": "Generate polished live or sample WeRead visual reading reports from 微信读书 skill data.",
+  "description": "生成真实账号或示例版微信读书可视化阅读报告。",
   "entrypoint": "scripts/generate_weread_report.py",
   "requires_env": [],
   "optional_env": ["WEREAD_API_KEY"],

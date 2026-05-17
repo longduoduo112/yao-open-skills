@@ -1,25 +1,25 @@
-# Artifact Design Profile
+# 产物设计画像
 
-## Artifact Family
+## 产物类型
 
-Interactive HTML report with a long-document reading rhythm and dashboard-density evidence blocks.
+交互式 HTML 报告，兼具长文档阅读节奏和仪表盘级证据密度。
 
-## Intended Reader
+## 目标读者
 
-The account owner reviewing two years of reading behavior, personal knowledge interests, and note-taking patterns.
+希望复盘近两年阅读行为、个人知识兴趣和笔记习惯的账号所有者。
 
-## Visual Standard
+## 视觉标准
 
-Kami-style Chinese report: warm paper, ink-blue emphasis, editorial hierarchy, compact evidence blocks, no decorative AI-dashboard styling.
+Kami 风格中文报告：暖纸质感、墨蓝强调、编辑化层级、紧凑证据块，不使用装饰性 AI 仪表盘风格。
 
-## Density Standard
+## 密度标准
 
-Use summary cards for scanability, then split 20+ charts across thematic sections. No section should depend on prose alone when a chart can show the pattern more clearly.
+用摘要卡片提高扫读效率，再将 20 个以上图表拆入不同主题章节。凡是图表能更清楚表达的模式，不应只依赖文字说明。
 
-## Review Checklist
+## 复核清单
 
-- The first screen communicates range, scope, and top numbers.
-- Every chart title names the measured behavior, not a generic metric.
-- Chart captions explain source fields or fallback.
-- Layout remains readable at narrow widths.
-- API key and raw secrets are absent.
+- 首屏能说明范围、口径和关键数字。
+- 每个图表标题都指向被衡量的阅读行为，而不是泛泛的指标名。
+- 图表说明解释源字段或回退口径。
+- 窄屏下布局仍然可读。
+- 不出现 API key 或原始密钥。

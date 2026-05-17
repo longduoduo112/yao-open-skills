@@ -53,7 +53,7 @@
 
 ```bash
 cd skills/yao-weread-skill
-export WEREAD_API_KEY="<your_api_key>"
+export WEREAD_API_KEY="<你的_WEREAD_API_KEY>"
 
 python3 scripts/generate_weread_report.py \
   --years 2 \
@@ -109,26 +109,13 @@ open reports/generated/latest/weread-report.html
 - 不要把书籍正文作为报告内容导出。
 - 如果某些微信读书字段缺失，报告会保留模块位置并显示空状态，而不是编造数据。
 
-## English Usage
+## 快速入口汇总
 
-`yao-weread-skill` generates a polished personal reading analytics report from WeRead data.
+`yao-weread-skill` 的主要入口如下：
 
-It collects reading rhythm, shelf structure, category preference, authors, publishers, note density, highlights, thoughts, and phrase-cloud data, then renders a standalone Chinese HTML report with 20+ chart modules.
-
-Use it when you need:
-
-- a local WeRead reading report
-- a two-year reading rhythm and preference review
-- visual analysis of shelf assets and notes
-- a standalone HTML report for personal knowledge review
-- a sample AI-founder reading report without connecting a live account
-
-Primary entry points:
-
-- [Skill file](../../skills/yao-weread-skill/SKILL.md)
-- [README](../../skills/yao-weread-skill/README.md)
-- [Chart catalog](../../skills/yao-weread-skill/references/chart-catalog.md)
-- [Data contract](../../skills/yao-weread-skill/references/data-contract.md)
-- [Report design](../../skills/yao-weread-skill/references/report-design.md)
-- [Sample report](../../skills/yao-weread-skill/examples/ai-founder-report/weread-report.html)
-
+- [Skill 入口文件](../../skills/yao-weread-skill/SKILL.md)
+- [Skill 目录说明](../../skills/yao-weread-skill/README.md)
+- [图表目录](../../skills/yao-weread-skill/references/chart-catalog.md)
+- [数据契约](../../skills/yao-weread-skill/references/data-contract.md)
+- [报告设计](../../skills/yao-weread-skill/references/report-design.md)
+- [AI 创业者示例报告](../../skills/yao-weread-skill/examples/ai-founder-report/weread-report.html)
