@@ -12,6 +12,7 @@ Current guides:
 - [yao-open-skills-sync](yao-open-skills-sync.md)
 - [yao-bayesian-skill](yao-bayesian-skill.md)
 - [yao-business-skill](yao-business-skill.md)
+- [yao-copyright-skill](yao-copyright-skill.md)
 - [yao-gametheory-skill](yao-gametheory-skill.md)
 - [yao-kelly-skill](yao-kelly-skill.md)
 - [yao-tutorial-skill](yao-tutorial-skill.md)

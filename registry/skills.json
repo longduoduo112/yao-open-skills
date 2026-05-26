@@ -1,6 +1,6 @@
 {
   "repo_name": "yao-open-skills",
-  "updated_at": "2026-05-22",
+  "updated_at": "2026-05-26",
   "skills": [
     {
       "slug": "learning-builder",
@@ -69,6 +69,28 @@
       ],
       "last_synced_at": "2026-04-23",
       "updated_at": "2026-04-23"
+    },
+    {
+      "slug": "yao-copyright-skill",
+      "title": "Yao Copyright Skill",
+      "summary": "Add standardized Yao copyright comment headers to skill packages without breaking SKILL.md frontmatter, script shebangs, or comment-unsafe files.",
+      "source_local_path": "/Users/laoyao/.agents/skills/yao-copyright-skill",
+      "collection_path": "skills/yao-copyright-skill",
+      "lifecycle": "active",
+      "sync_status": "published",
+      "github_repo": "yao-open-skills",
+      "github_url": "https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-copyright-skill",
+      "guide_path": "docs/skills/yao-copyright-skill.md",
+      "license": "MIT",
+      "tags": [
+        "copyright",
+        "skills",
+        "publishing",
+        "automation",
+        "headers"
+      ],
+      "last_synced_at": "2026-05-26",
+      "updated_at": "2026-05-26"
     },
     {
       "slug": "yao-gametheory-skill",
