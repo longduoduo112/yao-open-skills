@@ -1,0 +1,52 @@
+{
+  "name": "yao-demand-skill",
+  "version": "0.1.0",
+  "mode": "production",
+  "created_at": "2026-06-09",
+  "updated_at": "2026-06-09",
+  "owner": "Yao Team",
+  "status": "draft",
+  "maturity_tier": "production-light",
+  "review_cadence": "after first 3 real product assessments or before team-wide reuse",
+  "description": "Evidence-backed product demand assessment using the demand triangle model.",
+  "inputs": [
+    "product_url",
+    "product_description",
+    "product_docs",
+    "target_market",
+    "analysis_goal",
+    "constraints"
+  ],
+  "outputs": [
+    "report.json",
+    "report.md",
+    "report.html",
+    "report.docx",
+    "report.pdf"
+  ],
+  "entrypoint": "SKILL.md",
+  "references": [
+    "references/workflow.md",
+    "references/evidence-policy.md",
+    "references/triangle-model.md",
+    "references/report-contract.md",
+    "references/kami-white-report-layout.md"
+  ],
+  "scripts": [
+    "scripts/score_triangle.py",
+    "scripts/validate_report.py",
+    "scripts/render_report.py"
+  ],
+  "gates": [
+    "evals/resource_boundary_check.py",
+    "evals/trigger_eval.py",
+    "scripts/validate_report.py"
+  ],
+  "source_material": [
+    "reports/source-synthesis.md",
+    "reports/artifact-design-profile.md",
+    "reports/output-risk-profile.md",
+    "reports/prompt-quality-profile.md",
+    "references/kami-white-report-layout.md"
+  ]
+}

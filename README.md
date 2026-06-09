@@ -106,6 +106,7 @@ yao-open-skills/
 - [Yao Business Skill](docs/skills/yao-business-skill.md)
 - [Yao Copyright Skill](docs/skills/yao-copyright-skill.md)
 - [Yao Crux Skill](docs/skills/yao-crux-skill.md)
+- [Yao Demand Skill](docs/skills/yao-demand-skill.md)
 - [Yao Game Theory Skill](docs/skills/yao-gametheory-skill.md)
 - [Yao Kelly Skill](docs/skills/yao-kelly-skill.md)
 - [Yao Tutorial Skill](docs/skills/yao-tutorial-skill.md)
@@ -324,6 +325,7 @@ yao-open-skills/
 | [yao-business-skill](skills/yao-business-skill/SKILL.md) | [guide](docs/skills/yao-business-skill.md) | `active` | `published` | [skills/yao-business-skill](skills/yao-business-skill) | `external-local-source` | [link](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-business-skill) |
 | [yao-copyright-skill](skills/yao-copyright-skill/SKILL.md) | [guide](docs/skills/yao-copyright-skill.md) | `active` | `published` | [skills/yao-copyright-skill](skills/yao-copyright-skill) | `external-local-source` | [link](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-copyright-skill) |
 | [yao-crux-skill](skills/yao-crux-skill/SKILL.md) | [guide](docs/skills/yao-crux-skill.md) | `active` | `published` | [skills/yao-crux-skill](skills/yao-crux-skill) | `external-local-source` | [link](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-crux-skill) |
+| [yao-demand-skill](skills/yao-demand-skill/SKILL.md) | [guide](docs/skills/yao-demand-skill.md) | `active` | `published` | [skills/yao-demand-skill](skills/yao-demand-skill) | `external-local-source` | [link](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-demand-skill) |
 | [yao-expert-skill](skills/yao-expert-skill/SKILL.md) | [guide](docs/skills/yao-expert-skill.md) | `active` | `published` | [skills/yao-expert-skill](skills/yao-expert-skill) | `external-local-source` | [link](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-expert-skill) |
 | [yao-gametheory-skill](skills/yao-gametheory-skill/SKILL.md) | [guide](docs/skills/yao-gametheory-skill.md) | `active` | `published` | [skills/yao-gametheory-skill](skills/yao-gametheory-skill) | `external-local-source` | [link](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-gametheory-skill) |
 | [yao-kelly-skill](skills/yao-kelly-skill/SKILL.md) | [guide](docs/skills/yao-kelly-skill.md) | `active` | `published` | [skills/yao-kelly-skill](skills/yao-kelly-skill) | `external-local-source` | [link](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-kelly-skill) |

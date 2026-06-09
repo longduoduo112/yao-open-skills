@@ -1,6 +1,6 @@
 {
   "repo_name": "yao-open-skills",
-  "updated_at": "2026-06-04",
+  "updated_at": "2026-06-09",
   "skills": [
     {
       "slug": "learning-builder",
@@ -116,6 +116,31 @@
       ],
       "last_synced_at": "2026-05-27",
       "updated_at": "2026-05-27"
+    },
+    {
+      "slug": "yao-demand-skill",
+      "title": "Yao Demand Skill",
+      "summary": "Evaluate product demand with the demand triangle model, evidence grading, short-board scoring, recommendations, validation experiments, and Markdown/HTML/DOCX/PDF exports.",
+      "source_local_path": "/Users/laoyao/AI Coding/03-Development/Skills/yao-demand-skill",
+      "collection_path": "skills/yao-demand-skill",
+      "lifecycle": "active",
+      "sync_status": "published",
+      "github_repo": "yao-open-skills",
+      "github_url": "https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-demand-skill",
+      "guide_path": "docs/skills/yao-demand-skill.md",
+      "license": "MIT",
+      "tags": [
+        "demand-analysis",
+        "product",
+        "validation",
+        "reporting",
+        "docx",
+        "pdf",
+        "html",
+        "evidence"
+      ],
+      "last_synced_at": "2026-06-09",
+      "updated_at": "2026-06-09"
     },
     {
       "slug": "yao-expert-skill",

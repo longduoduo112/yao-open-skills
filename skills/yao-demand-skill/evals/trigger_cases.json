@@ -1,0 +1,30 @@
+{
+  "positives": [
+    "评估这个 AI 会议纪要工具的需求是否成立，并输出 Word/PDF/HTML/Markdown 报告",
+    "这个产品官网能不能看出真实需求？帮我用需求三角分析",
+    "我有一份 PRD，想做上市前需求评审和竞品替代分析",
+    "帮我诊断这个 SaaS 转化差是不是缺乏感、目标物还是消费者能力的问题",
+    "投前看一下这个教育产品的需求基础和红旗项"
+  ],
+  "negatives": [
+    "帮我写一段产品广告文案",
+    "帮我做 TAM/SAM/SOM 市场规模估算",
+    "评审这个页面的 UI 视觉细节",
+    "帮我做一个三年财务预测模型",
+    "这个医疗产品是否合法，给我法律意见"
+  ],
+  "near_neighbors": [
+    {
+      "text": "帮我设计这个产品的商业模式和定价路径",
+      "expected": "business-model skill unless demand evidence is explicitly requested"
+    },
+    {
+      "text": "帮我优化官网首屏文案",
+      "expected": "writing or marketing skill unless tied to demand triangle diagnosis"
+    },
+    {
+      "text": "帮我做竞品功能对比表",
+      "expected": "only route here if comparison is used to judge demand and substitutes"
+    }
+  ]
+}

@@ -14,6 +14,7 @@ Current guides:
 - [yao-business-skill](yao-business-skill.md)
 - [yao-copyright-skill](yao-copyright-skill.md)
 - [yao-crux-skill](yao-crux-skill.md)
+- [yao-demand-skill](yao-demand-skill.md)
 - [yao-expert-skill](yao-expert-skill.md)
 - [yao-gametheory-skill](yao-gametheory-skill.md)
 - [yao-kelly-skill](yao-kelly-skill.md)

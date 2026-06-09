@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "title": "AI 会议纪要工具需求评估报告",
+    "product_name": "AI 会议纪要工具",
+    "generated_at": "2026-06-09",
+    "language": "zh-CN",
+    "analyst": "Yao Demand Skill",
+    "analysis_goal": "上市前需求评审",
+    "target_market": "中国与海外通用的知识工作团队",
+    "source_boundary": "这是用于验证 skill 输出结构的样例报告。证据主要来自用户输入与模型假设，不代表真实产品调研结论。"
+  },
+  "executive_summary": {
+    "one_sentence": "AI 会议纪要工具的缺乏感较强，但需求能否成立主要取决于隐私合规、会议软件集成和准确率信任能否被快速证明。",
+    "decision": "validate",
+    "total_score": 4.99,
+    "lack_score": 7.2,
+    "target_object_score": 6.9,
+    "consumer_ability_score": 5.56,
+    "evidence_confidence": 0.76,
+    "context_adjustment": 0.0,
+    "biggest_opportunity": "高会议密度团队普遍存在会后信息丢失、行动项不清和复盘成本高的问题。",
+    "biggest_risk": "如果隐私、准确率和组织审批证据不足，用户会停留在试用或个人使用阶段。"
+  },
+  "product_canvas": {
+    "definition": "面向销售、咨询、产品和管理团队的 AI 会议录音、转写、纪要生成和行动项同步工具。",
+    "value_proposition": "把分散的会议内容转成可追踪的纪要、决策和任务，减少会后整理与遗漏。",
+    "features": [
+      "会议录音和自动转写",
+      "自动生成纪要、决策和行动项",
+      "与日历、会议软件和任务系统同步",
+      "支持按项目或客户归档历史会议"
+    ],
+    "pricing": [
+      "样例假设：个人免费试用，团队按席位订阅",
+      "样例假设：企业版增加数据保留、权限和合规能力"
+    ],
+    "business_model": "SaaS 订阅，可能叠加企业合规和集成服务。",
+    "target_users": [
+      "高会议密度的销售团队",
+      "咨询和客户成功团队",
+      "产品经理与项目负责人",
+      "管理者和运营团队"
+    ],
+    "usage_scenarios": [
+      "客户会议后的行动项追踪",
+      "跨团队项目例会后的责任分配",
+      "管理会议后的决策归档",
+      "新人或缺席成员快速回看上下文"
+    ],
+    "assumptions": [
+      "样例没有真实官网、价格页或用户评论输入，因此所有市场事实均需后续联网验证。",
+      "目标市场默认有线上会议和任务协作工具使用习惯。"
+    ]
+  },
+  "segments": [
+    {
+      "name": "高会议密度销售团队",
+      "scenario": "每天多场客户会议，需要在会后及时同步承诺事项和下一步动作。",
+      "job_to_be_done": "减少会后整理时间，并避免客户承诺或跟进动作遗漏。",
+      "current_alternatives": [
+        "人工手记",
+        "CRM 备注",
+        "会议录音回听",
+        "会后群消息追踪"
+      ],
+      "buying_role": "销售主管或 RevOps 负责人",
+      "adoption_blockers": [
+        "客户隐私和录音授权",
+        "CRM 集成成本",
+        "转写准确率和行动项识别可信度"
+      ]
+    },
+    {
+      "name": "产品与项目负责人",
+      "scenario": "跨团队例会后需要把决策、问题和责任人同步到项目管理系统。",
+      "job_to_be_done": "把会议讨论转成可追踪项目状态，减少重复沟通。",
+      "current_alternatives": [
+        "人工纪要",
+        "项目管理工具评论",
+        "共享文档",
+        "即时通讯群总结"
+      ],
+      "buying_role": "产品负责人或项目管理负责人",
+      "adoption_blockers": [
+        "会议上下文复杂导致 AI 摘要误判",
+        "团队成员不愿改变会议后流程",
+        "与现有项目管理工具同步不稳定"
+      ]
+    }
+  ],
+  "competitors": [
+    {
+      "name": "人工纪要",
+      "type": "manual",
+      "positioning": "低工具成本但高时间成本的默认替代方案。",
+      "strengths": [
+        "上下文理解强",
+        "无需采购审批"
+      ],
+      "weaknesses": [
+        "耗时",
+        "标准不稳定",
+        "容易遗漏"
+      ],
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "name": "会议软件自带转写",
+      "type": "substitute",
+      "positioning": "嵌入现有会议工具的基础转写能力。",
+      "strengths": [
+        "入口自然",
+        "部署成本低"
+      ],
+      "weaknesses": [
+        "行动项和业务系统同步可能不足",
+        "跨工具归档能力有限"
+      ],
+      "source_ids": [
+        "S2"
+      ]
+    },
+    {
+      "name": "通用文档 AI 助手",
+      "type": "indirect",
+      "positioning": "把会议材料粘贴后生成总结。",
+      "strengths": [
+        "灵活",
+        "学习成本低"
+      ],
+      "weaknesses": [
+        "需要人工搬运材料",
+        "缺少实时录音和系统集成"
+      ],
+      "source_ids": [
+        "S2"
+      ]
+    }
+  ],
+  "triangle_analysis": {
+    "lack": {
+      "score": 7.2,
+      "subscores": {
+        "intensity": 8,
+        "frequency": 8,
+        "urgency": 7,
+        "awareness": 7,
+        "trend": 7,
+        "willingness_to_pay": 6
+      },
+      "evidence": [
+        "高会议密度岗位有持续整理、同步和追踪压力，这是样例输入中的核心场景 [S1]。",
+        "销售、咨询和项目团队的会后动作遗漏会直接影响客户承诺、项目进度和内部协作 [S1]。"
+      ],
+      "counter_evidence": [
+        "样例没有真实用户评论或搜索数据，缺乏感强度仍需验证。",
+        "部分团队可能已经通过 CRM、共享文档或会议软件功能解决主要问题。"
+      ],
+      "reasoning": "会议纪要和行动项追踪属于高频工作流，问题强度和发生频率都较高，但真实愿付意愿需要价格页、竞品和访谈证据补充。",
+      "improvement_path": "先访谈高会议密度销售与项目团队，量化每周整理时间、遗漏成本和已付费替代方案。"
+    },
+    "target_object": {
+      "score": 6.9,
+      "subscores": {
+        "job_fit": 8,
+        "clarity": 8,
+        "differentiation": 6,
+        "proof": 5,
+        "category_fit": 7,
+        "time_to_value": 7
+      },
+      "evidence": [
+        "自动转写、纪要、行动项和同步直接对应会后整理 JTBD [S1]。",
+        "目标物可以用一句话解释：把会议变成可追踪的决策和任务 [S1]。"
+      ],
+      "counter_evidence": [
+        "会议软件自带转写和通用文档 AI 可能削弱差异化 [S2]。",
+        "样例缺少真实演示、准确率数据、客户案例或第三方评价。"
+      ],
+      "reasoning": "目标物与用户任务匹配较好，品类认知也相对成熟；短板在于差异化和证据强度，需要证明它不只是转写或摘要工具。",
+      "improvement_path": "用真实会议样本展示行动项识别、业务系统同步和错误纠正能力，并与会议软件自带能力对比。"
+    },
+    "consumer_ability": {
+      "score": 5.56,
+      "subscores": {
+        "money_cost": 6,
+        "action_cost": 6,
+        "learning_cost": 7,
+        "trust_cost": 4,
+        "risk_cost": 4,
+        "image_cost": 7,
+        "availability": 6
+      },
+      "evidence": [
+        "如果产品能接入现有日历、会议和任务系统，行动成本可以下降 [S1]。",
+        "团队版订阅和企业版合规能力是可能的商业路径 [S1]。"
+      ],
+      "counter_evidence": [
+        "录音授权、隐私合规和数据保留策略可能成为组织采用门槛。",
+        "准确率不足会造成错误纪要和错误行动项，直接提高信任成本。",
+        "企业客户可能需要采购、法务和安全审批。"
+      ],
+      "reasoning": "学习成本不高，但信任、隐私、安全和审批成本明显偏高。这是样例产品的短板维度。",
+      "improvement_path": "优先补充权限、数据保留、隐私政策、企业安全说明、准确率边界和人工校对机制。"
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "P0",
+      "area": "trust",
+      "recommendation": "先建立隐私、授权、数据保留和安全白皮书，再扩大企业销售。",
+      "rationale": "消费者能力短板集中在信任和风险成本。",
+      "expected_impact": "降低组织审批阻力，提高团队版转化。",
+      "effort": "medium"
+    },
+    {
+      "priority": "P1",
+      "area": "product",
+      "recommendation": "把产品演示聚焦在行动项识别和业务系统同步，而不是泛泛摘要。",
+      "rationale": "差异化短板来自会议软件和通用 AI 的替代压力。",
+      "expected_impact": "提升目标物清晰度和差异化。",
+      "effort": "medium"
+    },
+    {
+      "priority": "P1",
+      "area": "research",
+      "recommendation": "补做 10-15 个高会议密度团队访谈，量化整理时间、遗漏成本和当前替代方案。",
+      "rationale": "样例缺少真实用户反馈证据。",
+      "expected_impact": "提高证据信心并校准缺乏感评分。",
+      "effort": "low"
+    }
+  ],
+  "experiments": [
+    {
+      "hypothesis": "高会议密度销售团队愿意为自动行动项同步付费。",
+      "segment": "高会议密度销售团队",
+      "method": "落地页 + 真实会议 Demo + 预约试用",
+      "metric": "预约试用转化率",
+      "threshold": "目标客群访客转化率超过 8%",
+      "decision_rule": "低于阈值则重写价值主张或切换细分场景。"
+    },
+    {
+      "hypothesis": "隐私和准确率说明能显著降低企业试用阻力。",
+      "segment": "产品与项目负责人",
+      "method": "A/B 测试普通 Demo 与合规/准确率增强 Demo",
+      "metric": "企业试用申请率",
+      "threshold": "增强 Demo 申请率提升 30%",
+      "decision_rule": "若无提升，说明阻力可能来自集成或流程改变，而非信任材料。"
+    }
+  ],
+  "risks": [
+    {
+      "type": "evidence",
+      "severity": "high",
+      "risk": "样例报告缺少真实官网、用户评论、竞品价格和第三方评价。",
+      "mitigation": "正式报告必须联网检索并补充来源等级。",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "type": "privacy",
+      "severity": "high",
+      "risk": "会议录音与转写可能包含客户隐私、商业秘密或个人信息。",
+      "mitigation": "提供授权流程、数据保留策略、权限控制和删除机制。",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "type": "execution",
+      "severity": "medium",
+      "risk": "与会议软件、CRM 或任务系统集成不稳定会提高行动成本。",
+      "mitigation": "先支持最常见工具链，并提供失败回退和手动校对。",
+      "source_ids": [
+        "S2"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "S1",
+      "title": "样例产品输入与需求场景假设",
+      "url": "",
+      "source_type": "user_material",
+      "quality": "A",
+      "retrieved_at": "2026-06-09",
+      "published_at": "",
+      "claims": [
+        "AI 会议纪要工具面向高会议密度团队，核心任务是减少会后整理和行动项遗漏。"
+      ],
+      "confidence": 0.75
+    },
+    {
+      "id": "S2",
+      "title": "样例竞品与替代方案假设",
+      "url": "",
+      "source_type": "assumption",
+      "quality": "C",
+      "retrieved_at": "2026-06-09",
+      "published_at": "",
+      "claims": [
+        "会议软件自带转写、人工纪要和通用文档 AI 是可能替代方案。"
+      ],
+      "confidence": 0.65
+    }
+  ],
+  "open_questions": [
+    "目标客户当前每周花多少时间整理会议纪要？",
+    "客户愿意为自动行动项同步支付多少费用？",
+    "隐私合规、准确率和集成能力中哪个最影响试用转化？"
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Yao Demand Skill Report",
+  "type": "object",
+  "required": [
+    "meta",
+    "executive_summary",
+    "product_canvas",
+    "segments",
+    "triangle_analysis",
+    "recommendations",
+    "risks",
+    "evidence"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "product_name", "generated_at", "language"],
+      "properties": {
+        "title": {"type": "string"},
+        "product_name": {"type": "string"},
+        "generated_at": {"type": "string"},
+        "language": {"type": "string"},
+        "analyst": {"type": "string"},
+        "analysis_goal": {"type": "string"},
+        "target_market": {"type": "string"},
+        "source_boundary": {"type": "string"}
+      }
+    },
+    "executive_summary": {
+      "type": "object",
+      "required": [
+        "one_sentence",
+        "decision",
+        "total_score",
+        "lack_score",
+        "target_object_score",
+        "consumer_ability_score",
+        "evidence_confidence"
+      ],
+      "properties": {
+        "one_sentence": {"type": "string"},
+        "decision": {
+          "type": "string",
+          "enum": ["scale", "fix_short_board", "validate", "reposition", "pause"]
+        },
+        "total_score": {"type": "number", "minimum": 0, "maximum": 10},
+        "lack_score": {"type": "number", "minimum": 0, "maximum": 10},
+        "target_object_score": {"type": "number", "minimum": 0, "maximum": 10},
+        "consumer_ability_score": {"type": "number", "minimum": 0, "maximum": 10},
+        "evidence_confidence": {"type": "number", "minimum": 0.7, "maximum": 1},
+        "biggest_opportunity": {"type": "string"},
+        "biggest_risk": {"type": "string"}
+      }
+    },
+    "product_canvas": {
+      "type": "object",
+      "properties": {
+        "definition": {"type": "string"},
+        "value_proposition": {"type": "string"},
+        "features": {"type": "array", "items": {"type": "string"}},
+        "pricing": {"type": "array", "items": {"type": "string"}},
+        "business_model": {"type": "string"},
+        "target_users": {"type": "array", "items": {"type": "string"}},
+        "usage_scenarios": {"type": "array", "items": {"type": "string"}},
+        "assumptions": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "scenario", "job_to_be_done"],
+        "properties": {
+          "name": {"type": "string"},
+          "scenario": {"type": "string"},
+          "job_to_be_done": {"type": "string"},
+          "current_alternatives": {"type": "array", "items": {"type": "string"}},
+          "buying_role": {"type": "string"},
+          "adoption_blockers": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "competitors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "type": {
+            "type": "string",
+            "enum": ["direct", "indirect", "substitute", "manual", "non_consumption"]
+          },
+          "positioning": {"type": "string"},
+          "strengths": {"type": "array", "items": {"type": "string"}},
+          "weaknesses": {"type": "array", "items": {"type": "string"}},
+          "source_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "triangle_analysis": {
+      "type": "object",
+      "required": ["lack", "target_object", "consumer_ability"],
+      "properties": {
+        "lack": {"$ref": "#/$defs/dimension"},
+        "target_object": {"$ref": "#/$defs/dimension"},
+        "consumer_ability": {"$ref": "#/$defs/dimension"}
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["priority", "area", "recommendation"],
+        "properties": {
+          "priority": {"type": "string"},
+          "area": {"type": "string"},
+          "recommendation": {"type": "string"},
+          "rationale": {"type": "string"},
+          "expected_impact": {"type": "string"},
+          "effort": {"type": "string"}
+        }
+      }
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "hypothesis": {"type": "string"},
+          "segment": {"type": "string"},
+          "method": {"type": "string"},
+          "metric": {"type": "string"},
+          "threshold": {"type": "string"},
+          "decision_rule": {"type": "string"}
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "severity", "risk", "mitigation"],
+        "properties": {
+          "type": {"type": "string"},
+          "severity": {"type": "string", "enum": ["low", "medium", "high"]},
+          "risk": {"type": "string"},
+          "mitigation": {"type": "string"},
+          "source_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "source_type", "quality"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "url": {"type": "string"},
+          "source_type": {"type": "string"},
+          "quality": {"type": "string", "enum": ["A", "B", "C"]},
+          "retrieved_at": {"type": "string"},
+          "published_at": {"type": "string"},
+          "claims": {"type": "array", "items": {"type": "string"}},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "open_questions": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "dimension": {
+      "type": "object",
+      "required": ["score", "subscores", "evidence", "counter_evidence", "reasoning", "improvement_path"],
+      "properties": {
+        "score": {"type": "number", "minimum": 0, "maximum": 10},
+        "subscores": {"type": "object", "additionalProperties": {"type": "number"}},
+        "evidence": {"type": "array", "items": {"type": "string"}},
+        "counter_evidence": {"type": "array", "items": {"type": "string"}},
+        "reasoning": {"type": "string"},
+        "improvement_path": {"type": "string"}
+      }
+    }
+  }
+}
