@@ -385,12 +385,12 @@ def render_matrix_svg(module: Dict[str, Any]) -> str:
     items = chart_items(module)
     x_axis = h(data.get("x_axis", "横轴"))
     y_axis = h(data.get("y_axis", "纵轴"))
-    left, top, width, height = 104, 54, 690, 300
+    left, top, width, height = 74, 44, 500, 250
     points = []
     for index, item in enumerate(items):
         x = left + (clamp(item.get("x")) / 10) * width
         y = top + height - (clamp(item.get("y")) / 10) * height
-        r = 6.2 + clamp(item.get("size", 5), 0, 10) * 0.45
+        r = 7.0 + clamp(item.get("size", 5), 0, 10) * 0.35
         points.append(
             {
                 "item": item,
@@ -400,19 +400,43 @@ def render_matrix_svg(module: Dict[str, Any]) -> str:
                 "index": index + 1,
             }
         )
-    legend_top = 402
-    legend_row_h = 30
+    min_dist = 22
+    for _ in range(6):
+        for i in range(len(points)):
+            for j in range(i + 1, len(points)):
+                dx = points[j]["x"] - points[i]["x"]
+                dy = points[j]["y"] - points[i]["y"]
+                dist = math.hypot(dx, dy)
+                if dist >= min_dist:
+                    continue
+                if dist < 0.1:
+                    angle = (i + j + 1) * 0.9
+                    dx = math.cos(angle)
+                    dy = math.sin(angle)
+                    dist = 1.0
+                push = (min_dist - dist) / 2
+                ux, uy = dx / dist, dy / dist
+                points[i]["x"] -= ux * push
+                points[i]["y"] -= uy * push
+                points[j]["x"] += ux * push
+                points[j]["y"] += uy * push
+                for point in (points[i], points[j]):
+                    r = point["r"] + 1
+                    point["x"] = max(left + r, min(left + width - r, point["x"]))
+                    point["y"] = max(top + r, min(top + height - r, point["y"]))
+    legend_top = 356
+    legend_row_h = 28
     legend_cols = 2
     legend_height = max(1, math.ceil(len(points) / legend_cols)) * legend_row_h + 24
-    svg_height = max(500, legend_top + legend_height)
+    svg_height = max(470, legend_top + legend_height)
     parts = [
-        f'<svg viewBox="0 0 920 {svg_height}" role="img" aria-label="矩阵图">',
-        f'<rect x="0" y="0" width="920" height="{svg_height}" fill="#ffffff"/>',
+        f'<svg viewBox="0 0 640 {svg_height}" role="img" aria-label="矩阵图">',
+        f'<rect x="0" y="0" width="640" height="{svg_height}" fill="#ffffff"/>',
         f'<rect x="{left}" y="{top}" width="{width}" height="{height}" fill="#ffffff" stroke="#141413" stroke-width="1.5"/>',
         f'<line x1="{left + width / 2}" y1="{top}" x2="{left + width / 2}" y2="{top + height}" stroke="#efeee8" stroke-width="2"/>',
         f'<line x1="{left}" y1="{top + height / 2}" x2="{left + width}" y2="{top + height / 2}" stroke="#efeee8" stroke-width="2"/>',
-        f'<text x="{left + width / 2}" y="386" text-anchor="middle" font-size="16" fill="#3d3d3a" font-family="serif">{x_axis}</text>',
-        f'<text x="28" y="{top + height / 2}" transform="rotate(-90 28 {top + height / 2})" text-anchor="middle" font-size="16" fill="#3d3d3a" font-family="serif">{y_axis}</text>',
+        f'<text x="{left + width / 2}" y="328" text-anchor="middle" font-size="15" fill="#3d3d3a" font-family="serif">{x_axis}</text>',
+        f'<text x="22" y="{top + height / 2}" transform="rotate(-90 22 {top + height / 2})" text-anchor="middle" font-size="15" fill="#3d3d3a" font-family="serif">{y_axis}</text>',
         f'<text x="{left + 8}" y="{top + 20}" font-size="12" fill="#8a641f" font-family="serif">低确定性</text>',
         f'<text x="{left + width - 8}" y="{top + 20}" text-anchor="end" font-size="12" fill="#2f6f4e" font-family="serif">高确定性</text>',
         f'<line x1="{left}" y1="{legend_top - 18}" x2="{left + width}" y2="{legend_top - 18}" stroke="#efeee8" stroke-width="1"/>',
@@ -432,17 +456,17 @@ def render_matrix_svg(module: Dict[str, Any]) -> str:
         index = point["index"]
         col = (index - 1) % legend_cols
         row = (index - 1) // legend_cols
-        legend_x = left + col * 355
+        legend_x = left + col * 270
         legend_y = legend_top + row * legend_row_h
         parts.append(f'<circle cx="{legend_x}" cy="{legend_y - 4}" r="8" fill="#ffffff" stroke="#1B365D" stroke-width="1.5"/>')
         parts.append(
             f'<text x="{legend_x}" y="{legend_y}" text-anchor="middle" font-size="9" fill="#1B365D" font-family="serif">{index}</text>'
         )
         parts.append(
-            f'<text x="{legend_x + 16}" y="{legend_y}" font-size="13" fill="#141413" font-family="serif">{h(label_short(item.get("label"), 15))}</text>'
+            f'<text x="{legend_x + 16}" y="{legend_y}" font-size="12" fill="#141413" font-family="serif">{h(label_short(item.get("label"), 12))}</text>'
         )
         parts.append(
-            f'<text x="{legend_x + 210}" y="{legend_y}" font-size="11" fill="#6b6a64" font-family="serif">{score(item.get("x"))} / {score(item.get("y"))}</text>'
+            f'<text x="{legend_x + 172}" y="{legend_y}" font-size="10.5" fill="#6b6a64" font-family="serif">{score(item.get("x"))} / {score(item.get("y"))}</text>'
         )
     parts.append("</svg>")
     return "".join(parts)
@@ -1295,6 +1319,12 @@ def render_html(report: Dict[str, Any]) -> str:
         min-width: 0;
       }}
       .chart-bar .chart-svg-wrap {{
+        overflow: visible;
+      }}
+      .chart-matrix .chart-svg-wrap svg {{
+        min-width: 0;
+      }}
+      .chart-matrix .chart-svg-wrap {{
         overflow: visible;
       }}
     }}

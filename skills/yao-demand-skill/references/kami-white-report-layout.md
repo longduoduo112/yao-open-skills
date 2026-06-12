@@ -122,6 +122,7 @@ Chart rules:
 - score gauge charts must reserve internal right padding for the last band label and marker. The full scale from weakest to strongest must be visible at desktop report width without scrolling.
 - score gauge charts must also fit mobile card width without internal horizontal scrolling; use a compact dedicated viewBox rather than hiding the right side of the scale.
 - bar charts must fit the card width on desktop, PDF, and mobile without an internal horizontal scrollbar. Use a compact dedicated viewBox, shorter left label column, and right padding for values.
+- matrix/scatter charts must fit the card width on desktop, PDF, and mobile without an internal horizontal scrollbar for normal datasets. Use a compact dedicated viewBox, generous inside padding for quadrant labels, and a separate legend zone below the plot so axis labels, quadrant labels, markers, and legends are all visible.
 - matrix/scatter charts must include label collision handling: use numbered markers plus a compact two-column legend when points cluster; point-side labels may be used only when they do not overlap or disappear at report scale
 - clustered points should remain visible as a cluster instead of becoming unreadable text. Reduce marker size, increase plot area, and separate labels from markers before removing data.
 - every chart must remain readable at `375px` mobile width through responsive scaling or horizontal scroll
@@ -201,7 +202,8 @@ Word output is the editable review copy:
 - desktop `.chart-svg-wrap` elements do not horizontally overflow for essential chart modules, especially score gauges
 - mobile score gauge modules show the full scale and rightmost band label in the first viewport
 - mobile bar modules show all bars, labels, and right-side values in the first viewport
-- matrix/scatter chart labels do not overlap in the rendered HTML screenshot
+- mobile matrix modules show the full plot area, quadrant labels, axis labels, numbered markers, and legend in the first viewport
+- matrix/scatter chart labels and markers do not overlap in the rendered HTML screenshot
 - demand triangle uses a lightweight center label and does not visually fight with a large circle
 - Word output is checked for non-empty document XML, styled headings, and readable tables whether it uses `python-docx` or fallback OOXML
 - every chart module has a visible insight and recommendation
