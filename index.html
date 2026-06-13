@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yao Open Skills 导航</title>
+  <meta name="description" content="Yao Open Skills 的公开导航页，帮助用户按任务类型选择 Skill，并跳转到 GitHub 查看使用说明和源码入口。">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <a class="skip-link" href="#catalog">跳到 Skill 目录</a>
+  <nav class="site-nav" aria-label="Yao Open Skills 导航">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">Yao Open Skills</a>
+      <div class="nav-actions">
+        <a class="nav-link" href="#catalog" data-show-all>查看全部</a>
+        <details class="nav-menu">
+          <summary>按任务选择</summary>
+          <div class="nav-panel">
+            <a href="#decision-strategy" data-filter-link="decision-strategy">决策与战略 <span>4</span></a>
+            <a href="#business-research" data-filter-link="business-research">商业与研究 <span>3</span></a>
+            <a href="#learning-content" data-filter-link="learning-content">学习与内容 <span>3</span></a>
+            <a href="#engineering-governance" data-filter-link="engineering-governance">工程与治理 <span>3</span></a>
+          </div>
+        </details>
+        <a class="nav-link" href="https://github.com/yaojingang/yao-open-skills">GitHub</a>
+        <a class="nav-link" href="https://github.com/yaojingang/yao-open-skills/blob/main/README.md">README</a>
+        <a class="nav-link" href="https://github.com/yaojingang/yao-open-skills/blob/main/registry/skills.json">Skill 数据表</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page" id="top">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">OpenYao · 公开 Skill 导航 · 2026-06-13</p>
+        <h1>按任务找到合适的 AI Skill</h1>
+        <p class="tagline">这里收录了 13 个公开 Skill。你可以按任务类型筛选，也可以直接搜索关键词，再进入 GitHub 查看使用说明、源码入口和维护边界。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#catalog">浏览 Skill</a>
+          <a class="button" href="https://github.com/yaojingang/yao-open-skills/blob/main/README.md">查看 README</a>
+          <a class="button" href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/repository-design.md">仓库设计</a>
+          <a class="button" href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/publishing-rules.md">发布规则</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="仓库概览">
+        <div class="stat-grid">
+          <div class="stat"><strong>13</strong><span>公开 Skill</span></div>
+          <div class="stat"><strong>13</strong><span>说明文档</span></div>
+          <div class="stat"><strong>4</strong><span>任务分类</span></div>
+          <div class="stat"><strong>13</strong><span>已发布入口</span></div>
+        </div>
+        <p class="eyebrow">从判断到交付</p>
+        <div class="flow" aria-hidden="true">
+          <div class="flow-row"><div class="flow-label">先判断</div><div class="flow-bar"><div class="flow-dot blue"></div><div class="flow-dot teal"></div><div class="flow-dot rust"></div><div class="flow-dot green"></div></div></div>
+          <div class="flow-row"><div class="flow-label">再生产</div><div class="flow-bar"><div class="flow-dot rust"></div><div class="flow-dot plum"></div><div class="flow-dot teal"></div><div class="flow-dot amber"></div></div></div>
+          <div class="flow-row"><div class="flow-label">可治理</div><div class="flow-bar"><div class="flow-dot green"></div><div class="flow-dot blue"></div><div class="flow-dot plum"></div><div class="flow-dot rust"></div></div></div>
+        </div>
+      </aside>
+    </header>
+
+    <section class="section" id="catalog">
+      <div class="section-head">
+        <p class="section-num">01 · Choose</p>
+        <div>
+          <h2 class="section-title">按你的任务选择 Skill</h2>
+          <p class="section-lede">默认展示全部 Skill。筛选按钮适合先按大类浏览，搜索框适合直接找“贝叶斯”“需求”“安全”“教程”“微信读书”等具体关键词。</p>
+        </div>
+      </div>
+
+      <div class="toolbar" role="search">
+        <input class="search" id="search" type="search" placeholder="搜索：需求、贝叶斯、商业模式、安全、教程、微信读书..." aria-label="搜索 Skill">
+        <div class="filters" aria-label="按任务类型筛选">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="decision-strategy" aria-pressed="false">决策 <span>4</span></button>
+          <button class="filter" type="button" data-filter="business-research" aria-pressed="false">商业 <span>3</span></button>
+          <button class="filter" type="button" data-filter="learning-content" aria-pressed="false">学习 <span>3</span></button>
+          <button class="filter" type="button" data-filter="engineering-governance" aria-pressed="false">治理 <span>3</span></button>
+        </div>
+      </div>
+
+      <div class="category" id="decision-strategy" data-category="decision-strategy">
+        <h3>决策与战略 <span>decision-strategy · 4</span></h3>
+        <p class="category-desc">把不确定选择、资源配置、竞争反应和复杂局面整理成可复盘的行动报告。</p>
+        <div class="cards">
+          <article class="card" data-family="decision-strategy" data-search="yao-bayesian-skill yao bayesian skill 把不确定选择转成可复盘的贝叶斯决策报告，覆盖先验设定、证据分级、后验更新、行动阈值和 markdown/html 输出。 决策与战略 决策 bayesian decision-analysis prior-hygiene reporting export workflow 贝叶斯 决策分析 先验校验 报告 导出 工作流">
+            <div class="card-head">
+              <p class="card-kicker">决策与战略</p>
+              <h4>Yao Bayesian Skill</h4>
+              <p class="slug"><code>yao-bayesian-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">贝叶斯</span>
+<span class="badge">决策分析</span>
+<span class="badge">先验校验</span>
+<span class="badge">报告</span>
+<span class="badge">导出</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">把不确定选择转成可复盘的贝叶斯决策报告，覆盖先验设定、证据分级、后验更新、行动阈值和 Markdown/HTML 输出。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>把不确定选择、资源配置、竞争反应和复杂局面整理成可复盘的行动报告。</span>
+              <span><b>收录路径：</b><code>skills/yao-bayesian-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-bayesian-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-bayesian-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-bayesian-skill">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="decision-strategy" data-search="yao-crux-skill yao crux skill 诊断复杂局面的主次矛盾，澄清现状、识别根部变量、给出主攻行动和结果概率，并导出 markdown、html、docx、pdf 报告。 决策与战略 决策 decision-analysis principal-contradiction diagnosis first-principles reporting docx pdf html 决策分析 主要矛盾 诊断 第一性原理 报告 docx pdf html">
+            <div class="card-head">
+              <p class="card-kicker">决策与战略</p>
+              <h4>Yao Crux Skill</h4>
+              <p class="slug"><code>yao-crux-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">决策分析</span>
+<span class="badge">主要矛盾</span>
+<span class="badge">诊断</span>
+<span class="badge">第一性原理</span>
+<span class="badge">报告</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">诊断复杂局面的主次矛盾，澄清现状、识别根部变量、给出主攻行动和结果概率，并导出 Markdown、HTML、DOCX、PDF 报告。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>把不确定选择、资源配置、竞争反应和复杂局面整理成可复盘的行动报告。</span>
+              <span><b>收录路径：</b><code>skills/yao-crux-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-crux-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-crux-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-crux-skill">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="decision-strategy" data-search="yao-gametheory-skill yao game theory skill 把竞争、谈判、渠道、定价、平台、并购、融资和监管问题转成博弈论战略报告，分析对手反应、可信承诺和策略稳健性。 决策与战略 决策 game-theory strategy competition negotiation reporting export workflow historical-behavior 博弈论 战略 竞争 谈判 报告 导出 工作流 历史行为">
+            <div class="card-head">
+              <p class="card-kicker">决策与战略</p>
+              <h4>Yao Game Theory Skill</h4>
+              <p class="slug"><code>yao-gametheory-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">博弈论</span>
+<span class="badge">战略</span>
+<span class="badge">竞争</span>
+<span class="badge">谈判</span>
+<span class="badge">报告</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">把竞争、谈判、渠道、定价、平台、并购、融资和监管问题转成博弈论战略报告，分析对手反应、可信承诺和策略稳健性。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>把不确定选择、资源配置、竞争反应和复杂局面整理成可复盘的行动报告。</span>
+              <span><b>收录路径：</b><code>skills/yao-gametheory-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-gametheory-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-gametheory-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-gametheory-skill">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="decision-strategy" data-search="yao-kelly-skill yao kelly skill 把投资、下注或资源配置问题转成保守可执行的凯利配置方案，包含适用性判断、行动包、复盘机制和 html 输出。 决策与战略 决策 kelly allocation decision-analysis investment reporting html 凯利公式 资源配置 决策分析 投资 报告 html">
+            <div class="card-head">
+              <p class="card-kicker">决策与战略</p>
+              <h4>Yao Kelly Skill</h4>
+              <p class="slug"><code>yao-kelly-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">凯利公式</span>
+<span class="badge">资源配置</span>
+<span class="badge">决策分析</span>
+<span class="badge">投资</span>
+<span class="badge">报告</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">把投资、下注或资源配置问题转成保守可执行的凯利配置方案，包含适用性判断、行动包、复盘机制和 HTML 输出。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>把不确定选择、资源配置、竞争反应和复杂局面整理成可复盘的行动报告。</span>
+              <span><b>收录路径：</b><code>skills/yao-kelly-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-kelly-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-kelly-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-kelly-skill">GitHub 目录</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="category" id="business-research" data-category="business-research">
+        <h3>商业与研究 <span>business-research · 3</span></h3>
+        <p class="category-desc">用于商业模式、产品需求、行业学习和专家知识结构化。</p>
+        <div class="cards">
+          <article class="card" data-family="business-research" data-search="yao-business-skill yao business skill 围绕商业模式设计、诊断和案例研究，输出市场环境适配、竞品分析、图表报告和 ai 时代升级建议。 商业与研究 商业 business-model strategy diagnosis competition reporting ai 商业模式 战略 诊断 竞争 报告 ai">
+            <div class="card-head">
+              <p class="card-kicker">商业与研究</p>
+              <h4>Yao Business Skill</h4>
+              <p class="slug"><code>yao-business-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">商业模式</span>
+<span class="badge">战略</span>
+<span class="badge">诊断</span>
+<span class="badge">竞争</span>
+<span class="badge">报告</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">围绕商业模式设计、诊断和案例研究，输出市场环境适配、竞品分析、图表报告和 AI 时代升级建议。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>用于商业模式、产品需求、行业学习和专家知识结构化。</span>
+              <span><b>收录路径：</b><code>skills/yao-business-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-business-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-business-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-business-skill">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="business-research" data-search="yao-demand-skill yao demand skill 用需求三角模型评估产品需求，结合证据分级、短板评分、可视化诊断、情景预测和多格式报告输出。 商业与研究 商业 demand-analysis product validation visual-reporting charts forecast docx pdf html evidence 需求分析 产品 验证 可视化报告 图表 预测 docx pdf html 证据">
+            <div class="card-head">
+              <p class="card-kicker">商业与研究</p>
+              <h4>Yao Demand Skill</h4>
+              <p class="slug"><code>yao-demand-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">需求分析</span>
+<span class="badge">产品</span>
+<span class="badge">验证</span>
+<span class="badge">可视化报告</span>
+<span class="badge">图表</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">用需求三角模型评估产品需求，结合证据分级、短板评分、可视化诊断、情景预测和多格式报告输出。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>用于商业模式、产品需求、行业学习和专家知识结构化。</span>
+              <span><b>收录路径：</b><code>skills/yao-demand-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-demand-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-demand-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-demand-skill">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="business-research" data-search="yao-expert-skill yao expert skill 把行业、技术、市场、角色或模糊方向整理成专家学习报告和教程，包含关键词教学卡、学习锚点、费曼自测和多格式导出。 商业与研究 商业 expert-learning research industry-analysis tutorials keywords docx pdf html 专家学习 研究 行业分析 教程 关键词 docx pdf html">
+            <div class="card-head">
+              <p class="card-kicker">商业与研究</p>
+              <h4>Yao Expert Skill</h4>
+              <p class="slug"><code>yao-expert-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">专家学习</span>
+<span class="badge">研究</span>
+<span class="badge">行业分析</span>
+<span class="badge">教程</span>
+<span class="badge">关键词</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">把行业、技术、市场、角色或模糊方向整理成专家学习报告和教程，包含关键词教学卡、学习锚点、费曼自测和多格式导出。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>用于商业模式、产品需求、行业学习和专家知识结构化。</span>
+              <span><b>收录路径：</b><code>skills/yao-expert-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-expert-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-expert-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-expert-skill">GitHub 目录</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="category" id="learning-content" data-category="learning-content">
+        <h3>学习与内容 <span>learning-content · 3</span></h3>
+        <p class="category-desc">把主题、资料、阅读数据和学习者画像生产成教程、报告或可视化内容。</p>
+        <div class="cards">
+          <article class="card" data-family="learning-content" data-search="learning-builder learning builder 根据学习者画像和权威资料生成个性化教程，支持 markdown、docx、pdf 和可选学习网页扩展。 学习与内容 学习 education tutorials research export personalization 教育 教程 研究 导出 个性化">
+            <div class="card-head">
+              <p class="card-kicker">学习与内容</p>
+              <h4>Learning Builder</h4>
+              <p class="slug"><code>learning-builder</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">教育</span>
+<span class="badge">教程</span>
+<span class="badge">研究</span>
+<span class="badge">导出</span>
+<span class="badge">个性化</span>
+            </div>
+            <p class="desc">根据学习者画像和权威资料生成个性化教程，支持 Markdown、DOCX、PDF 和可选学习网页扩展。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>把主题、资料、阅读数据和学习者画像生产成教程、报告或可视化内容。</span>
+              <span><b>收录路径：</b><code>skills/learning-builder</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/learning-builder/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/learning-builder.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/learning-builder">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="learning-content" data-search="yao-tutorial-skill yao tutorial skill 把主题、资料包、论文、github 仓库、url 或草稿生产成新手教程包，包含研究取证、章节配图和 markdown、docx、pdf、html 导出。 学习与内容 学习 education tutorials research visuals docx pdf html 教育 教程 研究 配图 docx pdf html">
+            <div class="card-head">
+              <p class="card-kicker">学习与内容</p>
+              <h4>Yao Tutorial Skill</h4>
+              <p class="slug"><code>yao-tutorial-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">教育</span>
+<span class="badge">教程</span>
+<span class="badge">研究</span>
+<span class="badge">配图</span>
+<span class="badge">DOCX</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">把主题、资料包、论文、GitHub 仓库、URL 或草稿生产成新手教程包，包含研究取证、章节配图和 Markdown、DOCX、PDF、HTML 导出。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>把主题、资料、阅读数据和学习者画像生产成教程、报告或可视化内容。</span>
+              <span><b>收录路径：</b><code>skills/yao-tutorial-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-tutorial-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-tutorial-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-tutorial-skill">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="learning-content" data-search="yao-weread-skill yao weread skill 生成微信读书个人阅读可视化报告，覆盖阅读节律、书架资产、分类偏好、笔记语义、词云和独立 html 输出。 学习与内容 学习 weread reading-analytics visualization html word-cloud notes 微信读书 阅读分析 可视化 html 词云 笔记">
+            <div class="card-head">
+              <p class="card-kicker">学习与内容</p>
+              <h4>Yao WeRead Skill</h4>
+              <p class="slug"><code>yao-weread-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">微信读书</span>
+<span class="badge">阅读分析</span>
+<span class="badge">可视化</span>
+<span class="badge">HTML</span>
+<span class="badge">词云</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">生成微信读书个人阅读可视化报告，覆盖阅读节律、书架资产、分类偏好、笔记语义、词云和独立 HTML 输出。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>把主题、资料、阅读数据和学习者画像生产成教程、报告或可视化内容。</span>
+              <span><b>收录路径：</b><code>skills/yao-weread-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-weread-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-weread-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-weread-skill">GitHub 目录</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="category" id="engineering-governance" data-category="engineering-governance">
+        <h3>工程与治理 <span>engineering-governance · 3</span></h3>
+        <p class="category-desc">面向安全审查、版权头、公开合集同步和 Skill 发布治理。</p>
+        <div class="cards">
+          <article class="card" data-family="engineering-governance" data-search="yao-copyright-skill yao copyright skill 为 skill 包批量添加姚金刚版权注释，并避免破坏 skill.md frontmatter、脚本 shebang 和不适合注释的文件。 工程与治理 治理 copyright skills publishing automation headers 版权 skill 发布 自动化 文件头">
+            <div class="card-head">
+              <p class="card-kicker">工程与治理</p>
+              <h4>Yao Copyright Skill</h4>
+              <p class="slug"><code>yao-copyright-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">版权</span>
+<span class="badge">Skill</span>
+<span class="badge">发布</span>
+<span class="badge">自动化</span>
+<span class="badge">文件头</span>
+            </div>
+            <p class="desc">为 Skill 包批量添加姚金刚版权注释，并避免破坏 SKILL.md frontmatter、脚本 shebang 和不适合注释的文件。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>面向安全审查、版权头、公开合集同步和 Skill 发布治理。</span>
+              <span><b>收录路径：</b><code>skills/yao-copyright-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-copyright-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-copyright-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-copyright-skill">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="engineering-governance" data-search="yao-open-skills-sync yao open skills sync 管理 yao-open-skills 公开合集的收录、登记、同步状态、说明文档和 readme 目录更新。 工程与治理 治理 catalog governance publishing 目录 治理 发布">
+            <div class="card-head">
+              <p class="card-kicker">工程与治理</p>
+              <h4>Yao Open Skills Sync</h4>
+              <p class="slug"><code>yao-open-skills-sync</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">目录</span>
+<span class="badge">治理</span>
+<span class="badge">发布</span>
+            </div>
+            <p class="desc">管理 yao-open-skills 公开合集的收录、登记、同步状态、说明文档和 README 目录更新。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>面向安全审查、版权头、公开合集同步和 Skill 发布治理。</span>
+              <span><b>收录路径：</b><code>skills/yao-open-skills-sync</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-open-skills-sync/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-open-skills-sync.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-open-skills-sync">GitHub 目录</a>
+            </div>
+          </article>
+          <article class="card" data-family="engineering-governance" data-search="yao-websecurity-skill yao websecurity skill 审查授权网站、saas、api、ai 应用、本地代码或 github 仓库，基于 275 项漏洞本体输出中文优先的 excel、html、markdown、pdf 报告。 工程与治理 治理 security web-security audit sast dast reporting excel html pdf ai-security 安全 网站安全 审查 sast dast 报告 excel html pdf ai 安全">
+            <div class="card-head">
+              <p class="card-kicker">工程与治理</p>
+              <h4>Yao Websecurity Skill</h4>
+              <p class="slug"><code>yao-websecurity-skill</code></p>
+            </div>
+            <div class="badge-row">
+              <span class="badge strong">已发布</span>
+              <span class="badge">安全</span>
+<span class="badge">网站安全</span>
+<span class="badge">审查</span>
+<span class="badge">SAST</span>
+<span class="badge">DAST</span>
+<span class="badge muted">更多</span>
+            </div>
+            <p class="desc">审查授权网站、SaaS、API、AI 应用、本地代码或 GitHub 仓库，基于 275 项漏洞本体输出中文优先的 Excel、HTML、Markdown、PDF 报告。</p>
+            <div class="meta-list">
+              <span><b>适合任务：</b>面向安全审查、版权头、公开合集同步和 Skill 发布治理。</span>
+              <span><b>收录路径：</b><code>skills/yao-websecurity-skill</code></span>
+            </div>
+            <div class="links">
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/skills/yao-websecurity-skill/SKILL.md">查看 Skill</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/blob/main/docs/skills/yao-websecurity-skill.md">使用说明</a>
+              <a href="https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-websecurity-skill">GitHub 目录</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>这个导航页由 <code>registry/skills.json</code> 自动生成。新增或更新 Skill 后，运行 <code>python3 scripts/render_collection_pages.py</code> 即可同步刷新 README 目录和 HTML 导航。</p>
+    </footer>
+  </main>
+
+  <script src="assets/js/navigation.js"></script>
+</body>
+</html>

@@ -7,6 +7,7 @@ This reference is the short operational summary for maintaining `yao-open-skills
 - Public skill content lives in `skills/<slug>/`
 - Skill state lives in `registry/skills.json`
 - README catalog is generated from the registry
+- HTML navigation page `index.html` is generated from the registry
 
 ## Intake rule
 
@@ -32,9 +33,9 @@ Use these `sync_status` values:
 1. Import or update the public skill copy
 2. Upsert `registry/skills.json`
 3. Add or update `docs/skills/<slug>.md`
-4. Regenerate `README.md`
+4. Regenerate `README.md` and `index.html` with `python3 scripts/render_collection_pages.py`
 
 ## Paths
 
-- Repo root: the repository root that contains `README.md`, `registry/`, `scripts/`, and `skills/`
+- Repo root: the repository root that contains `README.md`, `index.html`, `registry/`, `scripts/`, and `skills/`
 - Skill collection root: `skills/` under the repo root

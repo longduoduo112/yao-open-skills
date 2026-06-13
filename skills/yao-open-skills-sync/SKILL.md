@@ -24,7 +24,7 @@ Only read repo-wide docs under `../../docs/` if you need more human-facing detai
 - Create a clean public copy under `skills/<slug>/`
 - Register or update the skill in `registry/skills.json`
 - Add or update a human-facing usage guide under `docs/skills/<slug>.md`
-- Regenerate the README catalog so the collection homepage stays in sync
+- Regenerate the README catalog and HTML navigation page so the collection homepage stays in sync
 - Record whether the skill is only local, staged, published, or needs an update
 - Push collection changes to GitHub when the user wants the public repo updated
 
@@ -88,10 +88,10 @@ Use `--last-synced-at YYYY-MM-DD` only when the skill has actually been pushed t
 After every registry change, run:
 
 ```bash
-python3 scripts/render_readme_catalog.py
+python3 scripts/render_collection_pages.py
 ```
 
-README is a rendered view. Do not maintain the catalog table manually.
+README and `index.html` are rendered views. Do not maintain the catalog table or HTML Skill cards manually.
 
 ### 5.5 Write the usage guide
 
@@ -114,6 +114,7 @@ The guide should explain:
 If the user wants the collection pushed:
 
 - ensure the public files, registry, and README are already consistent
+- ensure `index.html` is regenerated from the registry
 - commit the current repo changes with a clear message
 - push to the configured `yao-open-skills` GitHub repository
 - only after a successful push, mark relevant skills as `published` and set `last_synced_at`
@@ -136,7 +137,7 @@ When this skill completes a sync task, the result should leave the collection in
 
 - public files exist under `skills/<slug>/`
 - `registry/skills.json` is up to date
-- `README.md` catalog matches the registry
+- `README.md` catalog and `index.html` navigation page match the registry
 - if a push was requested, the GitHub repo reflects the same state
 
 ## Decision Rules

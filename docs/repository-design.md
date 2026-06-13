@@ -42,6 +42,7 @@
 - `skills/<slug>/`: 公开版 Skill 实体目录
 - `registry/skills.json`: 收录、同步和来源状态的结构化登记表
 - `README.md`: 面向人阅读的合集首页，由登记表生成目录区块
+- `index.html`: 面向浏览器和 GitHub Pages 的 HTML 导航页，由登记表生成
 - `docs/skills/<slug>.md`: 面向人阅读的每个 Skill 使用说明
 
 约束如下：
@@ -49,14 +50,19 @@
 - Skill 的真实公开内容以 `skills/<slug>/` 为准
 - Skill 的状态以 `registry/skills.json` 为准
 - README 只做展示，不手工当事实源维护
+- HTML 导航页只做展示，不手工当事实源维护
 - 每个已开源 Skill 都应有对应的 guide 文档
 
 ## 3. 目录规则
 
 ```text
 yao-open-skills/
+├── index.html
 ├── README.md
 ├── .gitignore
+├── assets/
+│   ├── css/
+│   └── js/
 ├── docs/
 │   ├── repository-design.md
 │   └── publishing-rules.md
@@ -64,7 +70,9 @@ yao-open-skills/
 │   └── skills.json
 ├── scripts/
 │   ├── register_skill.py
-│   └── render_readme_catalog.py
+│   ├── render_readme_catalog.py
+│   ├── render_site_nav.py
+│   └── render_collection_pages.py
 └── skills/
     └── <skill-slug>/
         ├── SKILL.md
@@ -76,6 +84,7 @@ yao-open-skills/
 设计原则：
 
 - `skills/` 目录只放“公开副本”，不做软链接。
+- `assets/` 目录只放 GitHub Pages 导航页需要的静态资源。
 - 每个收录 Skill 都使用稳定 slug，目录名和登记表 slug 一致。
 - `docs/` 解释仓库治理，不替代 Skill 自身说明。
 - `scripts/` 只放仓库级维护脚本，不放具体 Skill 的业务脚本。
@@ -167,15 +176,21 @@ yao-open-skills/
 - 若依赖个人私有路径，需改成公开可解释的路径或写成说明
 - 导入完成后，为该 Skill 新增 `docs/skills/<slug>.md` 使用说明
 
-## 7. README 同步规则
+## 7. 首页同步规则
 
-README 的 Skill 目录区块必须从 `registry/skills.json` 自动渲染，不能手工维护。
+README 的 Skill 目录区块和 `index.html` HTML 导航页必须从 `registry/skills.json` 自动渲染，不能手工维护。
 
 原因：
 
 - 降低遗漏
 - 保证格式统一
-- 让 README 和登记表保持一致
+- 让 README、HTML 导航页和登记表保持一致
+
+统一刷新命令：
+
+```bash
+python3 scripts/render_collection_pages.py
+```
 
 ## 9. GitHub 发布规则
 
@@ -187,7 +202,7 @@ README 的 Skill 目录区块必须从 `registry/skills.json` 自动渲染，不
 
 1. 更新公开 Skill 内容
 2. 更新 `registry/skills.json`
-3. 渲染 `README.md`
+3. 渲染 `README.md` 和 `index.html`
 4. 提交 Git 变更
 5. 推送到 GitHub
 6. 将已推送 Skill 的 `sync_status` 维护为 `published`

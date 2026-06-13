@@ -3,70 +3,11 @@
 import json
 from pathlib import Path
 
+from catalog_common import visible_tag_labels
+
 
 START_MARKER = "<!-- catalog:start -->"
 END_MARKER = "<!-- catalog:end -->"
-MAX_VISIBLE_TAGS = 4
-
-
-TAG_LABELS = {
-    "ai": "AI",
-    "ai-security": "AI 安全",
-    "allocation": "资源配置",
-    "audit": "审查",
-    "automation": "自动化",
-    "bayesian": "贝叶斯",
-    "business-model": "商业模式",
-    "catalog": "目录",
-    "charts": "图表",
-    "competition": "竞争",
-    "copyright": "版权",
-    "dast": "DAST",
-    "decision-analysis": "决策分析",
-    "demand-analysis": "需求分析",
-    "diagnosis": "诊断",
-    "docx": "DOCX",
-    "education": "教育",
-    "evidence": "证据",
-    "excel": "Excel",
-    "expert-learning": "专家学习",
-    "export": "导出",
-    "first-principles": "第一性原理",
-    "forecast": "预测",
-    "game-theory": "博弈论",
-    "governance": "治理",
-    "headers": "文件头",
-    "historical-behavior": "历史行为",
-    "html": "HTML",
-    "industry-analysis": "行业分析",
-    "investment": "投资",
-    "kelly": "凯利公式",
-    "keywords": "关键词",
-    "negotiation": "谈判",
-    "notes": "笔记",
-    "pdf": "PDF",
-    "personalization": "个性化",
-    "principal-contradiction": "主要矛盾",
-    "product": "产品",
-    "prior-hygiene": "先验校验",
-    "publishing": "发布",
-    "reading-analytics": "阅读分析",
-    "reporting": "报告",
-    "research": "研究",
-    "sast": "SAST",
-    "security": "安全",
-    "skills": "Skill",
-    "strategy": "战略",
-    "tutorials": "教程",
-    "validation": "验证",
-    "visual-reporting": "可视化报告",
-    "visualization": "可视化",
-    "visuals": "配图",
-    "web-security": "网站安全",
-    "weread": "微信读书",
-    "word-cloud": "词云",
-    "workflow": "工作流",
-}
 
 
 def escape_table_cell(value: str) -> str:
@@ -74,12 +15,11 @@ def escape_table_cell(value: str) -> str:
 
 
 def format_tags(tags):
-    labels = [TAG_LABELS.get(tag, tag) for tag in tags]
-    visible = labels[:MAX_VISIBLE_TAGS]
+    visible, has_more = visible_tag_labels(tags)
     if not visible:
         return "未标注"
     rendered = "、".join(f"`{label}`" for label in visible)
-    return f"{rendered} 等" if len(labels) > MAX_VISIBLE_TAGS else rendered
+    return f"{rendered} 等" if has_more else rendered
 
 
 def format_nav(skill):

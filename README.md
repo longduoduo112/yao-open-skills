@@ -12,17 +12,19 @@
 - 记录每个 Skill 的收录路径、公开状态和同步状态。
 - 作为后续版本迭代的发布入口，在确认更新后同步推送到 GitHub。
 
-如果只是想找能用的 Skill，先看 [Skill 导航目录](#skill-导航目录)。如果想理解 `OpenYao` 背后的方法论，再看 [推荐入口](#推荐入口) 和 [OpenYao 理念](#openyao-理念)。
+如果只是想找能用的 Skill，先看 [HTML 导航页](https://yaojingang.github.io/yao-open-skills/) 或 [Skill 导航目录](#skill-导航目录)。如果想理解 `OpenYao` 背后的方法论，再看 [推荐入口](#推荐入口) 和 [OpenYao 理念](#openyao-理念)。
 
 ## 快速入口
 
 - [OpenYao 理念](#openyao-理念)
 - [推荐入口](#推荐入口)
+- [HTML 导航页](https://yaojingang.github.io/yao-open-skills/)
 - [Skill 导航目录](#skill-导航目录)
 - [重点 Skill 速览](#重点-skill-速览)
 - [已发布 Skill 说明](#已发布-skill-说明)
 - [规划中的能力线](#规划中的能力线)
 - [发布规则](docs/publishing-rules.md)
+- [HTML 导航页维护](docs/html-navigation.md)
 - [命名规范](docs/naming-conventions.md)
 - [仓库设计](docs/repository-design.md)
 
@@ -86,6 +88,8 @@
 
 ```text
 yao-open-skills/
+├── index.html
+├── assets/
 ├── README.md
 ├── docs/
 ├── registry/
@@ -93,6 +97,8 @@ yao-open-skills/
 └── skills/
 ```
 
+- `index.html`: GitHub Pages 使用的 HTML 导航页。
+- `assets/`: HTML 导航页的 CSS 和 JS 静态资源。
 - `docs/`: 仓库设计、发布规则、同步规范。
 - `registry/`: Skill 登记表，是本地和公开状态的事实源。
 - `scripts/`: 更新登记表和 README 的辅助脚本。
@@ -342,6 +348,7 @@ yao-open-skills/
 ## 后续约定
 
 - `registry/skills.json` 是事实源。
-- README 中的目录表由脚本生成，不手工维护。
+- README 中的目录表和 `index.html` 导航页由脚本生成，不手工维护。
 - 任何新收录 Skill，都必须先过发布规则，再更新登记表和 README。
+- 新增、刷新或发布 Skill 后，运行 `python3 scripts/render_collection_pages.py`，同步刷新 README 和 HTML 导航页。
 - 任何准备公开的变更，都应在整理完成后推送到 GitHub 远程仓库。
