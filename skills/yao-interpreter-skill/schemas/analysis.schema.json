@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yao.local/schemas/skill-interpreter-analysis.schema.json",
+  "title": "Yao Interpreter Analysis",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "generated_at",
+    "source",
+    "metadata",
+    "skill_md",
+    "inventory",
+    "capability_summary",
+    "static_scan",
+    "scorecard",
+    "findings",
+    "metrics",
+    "roadmap"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": ["input", "resolved_root"]
+    },
+    "inventory": {
+      "type": "object",
+      "required": ["has_skill_md", "file_count", "total_bytes", "directories", "file_types"]
+    },
+    "scorecard": {
+      "type": "object",
+      "required": ["total", "grade", "risk_level", "recommendation", "dimensions", "max_total"],
+      "properties": {
+        "total": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "max_total": {
+          "const": 100
+        },
+        "risk_level": {
+          "enum": ["low", "medium", "high", "critical"]
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "skill-interpreter-findings.schema.json#/$defs/finding"
+      }
+    }
+  },
+  "additionalProperties": true
+}

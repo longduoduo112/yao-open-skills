@@ -1,0 +1,58 @@
+{
+  "skill": "yao-interpreter-skill",
+  "version": "0.1.0",
+  "positive": [
+    {
+      "id": "local-skill-quality-report",
+      "prompt": "请解读这个本地 Skill 目录，生成中文 HTML 报告、100 分评分、风险审查和改进路线图。",
+      "should_trigger": true,
+      "reason": "已有 Skill 的质量解读、评分和报告生成。"
+    },
+    {
+      "id": "archive-adoption-review",
+      "prompt": "这个 zip 里的第三方 Agent Skill 能不能引入团队？请静态分析，不要执行脚本，给出证据链和准入建议。",
+      "should_trigger": true,
+      "reason": "安全边界、准入审查和证据化建议是核心任务。"
+    },
+    {
+      "id": "author-improvement-roadmap",
+      "prompt": "帮我看这个 SKILL.md 的 description、结构和输出契约，指出扣分项并给修复验收标准。",
+      "should_trigger": true,
+      "reason": "针对现有 Skill 的触发、结构和改进评估。"
+    }
+  ],
+  "negative": [
+    {
+      "id": "create-new-skill",
+      "prompt": "根据这份流程文档创建一个新的 yao-xxx-skill。",
+      "should_trigger": false,
+      "preferred_skill": "yao-meta-skill",
+      "reason": "创建或重构 Skill 属于 yao-meta-skill。"
+    },
+    {
+      "id": "learning-report-word-pdf",
+      "prompt": "把这个 Skill 读一遍，导出 Markdown、HTML、Word、PDF 四种学习报告。",
+      "should_trigger": false,
+      "preferred_skill": "yao-skill-reader-skill",
+      "reason": "多格式学习报告更贴近已有 reader Skill。"
+    },
+    {
+      "id": "execute-target-skill",
+      "prompt": "运行这个 Skill 里的脚本，看看它能不能真的完成任务。",
+      "should_trigger": false,
+      "reason": "本 Skill 禁止执行目标 Skill 脚本。"
+    },
+    {
+      "id": "security-audit-only",
+      "prompt": "只做依赖漏洞审计和运行时沙箱安全测试。",
+      "should_trigger": false,
+      "reason": "本 Skill 提供静态风险信号，不替代专门安全审计。"
+    }
+  ],
+  "near_neighbors": [
+    "yao-meta-skill",
+    "yao-skill-reader-skill",
+    "security review skills",
+    "runtime evaluation skills"
+  ]
+}

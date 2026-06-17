@@ -113,6 +113,7 @@ CATEGORY_BY_SLUG = {
     "yao-demand-skill": "business-research",
     "yao-expert-skill": "business-research",
     "yao-gametheory-skill": "decision-strategy",
+    "yao-interpreter-skill": "engineering-governance",
     "yao-kelly-skill": "decision-strategy",
     "yao-open-skills-sync": "engineering-governance",
     "yao-tutorial-skill": "learning-content",
