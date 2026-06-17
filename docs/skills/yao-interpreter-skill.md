@@ -52,9 +52,11 @@ python3 scripts/cli.py analyze ./target-skill --out reports/generated --lang zh-
 
 ## 公开版说明
 
-公开仓库只保留源码、模板、参考资料、schema、eval 和最小示例。生成报告目录默认不随源码发布，因为报告里可能包含本地绝对路径、临时截图、第三方 Skill 快照或审查过程产物。
+公开仓库默认只保留源码、模板、参考资料、schema、eval 和最小示例。生成报告目录默认不随源码发布，因为报告里可能包含本地绝对路径、临时截图、第三方 Skill 快照或审查过程产物。
 
-如果需要看报告效果，请在本地对公开样例或目标 Skill 重新运行 CLI。
+经过清洗的公开报告可以作为示例发布在 `reports/examples/` 下。目前可查看：
+
+- [yao-meta-skill 解读报告](../../skills/yao-interpreter-skill/reports/examples/yaojingang-yao-meta-skill/report.zh-CN.html)
 
 ## 入口文件
 

@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Yao Interpreter">
+  <title>yao-meta-skill · Skill quality interpretation report</title>
+  <style>:root {
+  --paper: #ffffff;
+  --wash: #f8fafc;
+  --wash-strong: #f2f5f8;
+  --line: #e6e0d4;
+  --line-soft: #eee9df;
+  --brand: #1B365D;
+  --brand-soft: #EEF3F8;
+  --brand-mid: #315982;
+  --ink: #151515;
+  --text: #2f2d29;
+  --muted: #68625a;
+  --faint: #8b857b;
+  --ok: #2f6f5e;
+  --warn: #8a5a19;
+  --danger: #9b2f2f;
+  --mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, "Noto Serif CJK SC", monospace;
+  --serif: "TsangerJinKai02", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", Charter, Georgia, serif;
+  --shadow-soft: 0 1px 2px rgba(27, 54, 93, 0.06), 0 14px 40px rgba(27, 54, 93, 0.08);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.65;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+html[lang="zh-CN"] [data-lang="en"] { display: none !important; }
+html[lang="en"] [data-lang="zh-CN"] { display: none !important; }
+a { color: var(--brand); }
+.skip-link {
+  position: fixed;
+  left: 18px;
+  top: 10px;
+  z-index: 40;
+  transform: translateY(-140%);
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--brand);
+  color: #fff;
+  text-decoration: none;
+  transition-property: transform;
+  transition-duration: 160ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.skip-link:focus-visible { transform: translateY(0); outline: 2px solid var(--brand-mid); outline-offset: 2px; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #ffffff;
+  border-bottom: 1px solid var(--line);
+}
+.progress-track { height: 2px; background: transparent; }
+.progress-bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition-property: transform;
+  transition-duration: 160ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.topbar-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 46px;
+  padding: 8px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.report-mark {
+  color: var(--brand);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--wash);
+}
+.language-switch button {
+  min-width: 44px;
+  min-height: 30px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1;
+  transition-property: background-color, color, transform;
+  transition-duration: 160ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+.language-switch button[aria-pressed="true"] {
+  background: var(--brand);
+  color: #ffffff;
+}
+.language-switch button:active { transform: scale(0.96); }
+.language-switch button:focus-visible { outline: 2px solid var(--brand-mid); outline-offset: 2px; }
+.wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 44px 28px 92px;
+}
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 44px;
+  align-items: start;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--line);
+}
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--brand);
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+h1 {
+  max-width: 9em;
+  color: var(--ink);
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.02;
+}
+.lead {
+  max-width: 960px;
+  margin: 18px 0 0;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.74;
+  text-wrap: pretty;
+}
+.badges, .hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.tag, .badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.hero-card {
+  padding: 22px;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--line-soft);
+}
+.score-big {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--brand);
+}
+.score-big strong {
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.score-big span { color: var(--muted); }
+.decision {
+  margin-top: 14px;
+  color: var(--text);
+  font-size: 1rem;
+}
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+.kpi {
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--wash);
+  border: 1px solid var(--line-soft);
+}
+.kpi span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.kpi strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--ink);
+  font-size: 24px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 270px;
+  gap: 28px;
+  align-items: start;
+  padding-top: 32px;
+}
+.side-toc, .metrics-aside {
+  position: sticky;
+  top: 76px;
+}
+.side-toc {
+  display: grid;
+  gap: 4px;
+}
+.side-toc a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+}
+.side-toc a[aria-current="true"], .side-toc a:hover {
+  color: var(--brand);
+  background: var(--brand-soft);
+}
+.metrics-aside {
+  display: grid;
+  gap: 10px;
+}
+.aside-box {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line-soft);
+  background: var(--wash);
+}
+.aside-box span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.aside-box strong {
+  display: block;
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.report-section {
+  scroll-margin-top: 92px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.section-number {
+  color: var(--brand);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+h2 { font-size: 28px; line-height: 1.15; }
+h3 { font-size: 18px; line-height: 1.25; }
+p { color: var(--text); margin: 0 0 12px; }
+.panel {
+  padding: 20px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(27, 54, 93, 0.04);
+}
+.panel + .panel { margin-top: 14px; }
+.analysis-note {
+  background: var(--wash);
+  border-color: var(--line);
+}
+.analysis-note p:last-child { margin-bottom: 0; }
+.lead-in {
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+ul, ol { margin: 0; padding-left: 20px; }
+li { margin: 4px 0; color: var(--text); }
+.score-row {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr) 52px;
+  gap: 12px;
+  align-items: center;
+  margin: 9px 0;
+}
+.bar {
+  height: 9px;
+  border-radius: 999px;
+  background: var(--wash-strong);
+  overflow: hidden;
+}
+.bar i {
+  display: block;
+  width: var(--score);
+  height: 100%;
+  background: var(--brand);
+}
+.score-row strong {
+  text-align: right;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.finding {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--wash);
+}
+.finding + .finding { margin-top: 12px; }
+.finding-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.severity {
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 12px;
+  font-family: var(--mono);
+}
+.severity.low { background: #eef7f3; color: var(--ok); }
+.severity.medium { background: #fff5e6; color: var(--warn); }
+.severity.high, .severity.critical { background: #fff0f0; color: var(--danger); }
+.evidence {
+  padding: 12px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid var(--line-soft);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.evidence-raw {
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.evidence-raw summary {
+  color: var(--brand);
+  font-family: var(--serif);
+  font-size: 13px;
+}
+pre, code {
+  font-family: var(--mono);
+  font-size: 13px;
+}
+pre {
+  margin: 0;
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--wash);
+  border: 1px solid var(--line-soft);
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 14px;
+}
+th {
+  text-align: left;
+  color: var(--muted);
+  font-weight: 500;
+  border-bottom: 1px solid var(--line);
+  padding: 8px;
+}
+td {
+  border-bottom: 1px solid var(--line-soft);
+  padding: 8px;
+  vertical-align: top;
+}
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+figure {
+  margin: 0;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--wash);
+  border: 1px solid var(--line-soft);
+}
+svg { width: 100%; height: auto; display: block; }
+.chart-title {
+  fill: var(--brand);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.prompt {
+  position: relative;
+}
+.copy-button {
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--brand);
+  cursor: pointer;
+  padding: 0 12px;
+  font: inherit;
+  font-size: 13px;
+  transition-property: background-color, transform;
+  transition-duration: 160ms;
+}
+.copy-button:active { transform: scale(0.96); }
+.copy-button:focus-visible { outline: 2px solid var(--brand-mid); outline-offset: 2px; }
+.file-tree {
+  max-height: 360px;
+  overflow: auto;
+}
+details {
+  padding: 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--wash);
+}
+summary { cursor: pointer; color: var(--brand); }
+
+@media (max-width: 1180px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .side-toc, .metrics-aside { position: static; }
+  .side-toc {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  .side-toc a { flex: 0 0 auto; }
+  .metrics-aside { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .topbar-inner { min-height: 42px; padding: 8px 14px; }
+  .language-switch button { min-width: 40px; min-height: 28px; }
+  .wrap { padding: 34px 16px 72px; }
+  .hero { grid-template-columns: 1fr; gap: 24px; }
+  .kpi-grid, .grid-2, .grid-3, .chart-grid, .metrics-aside { grid-template-columns: 1fr; }
+  h1 { font-size: 42px; }
+  .score-big strong { font-size: 54px; }
+}
+@media print {
+  .topbar, .side-toc, .copy-button, .skip-link { display: none !important; }
+  .wrap { padding: 0; }
+  .layout, .hero, .grid-2, .grid-3, .chart-grid { display: block; }
+  .panel, .finding, figure { break-inside: avoid; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main"><span data-lang="zh-CN">跳到正文</span><span data-lang="en">Skip to content</span></a>
+  <header class="topbar">
+    <div class="progress-track"><span class="progress-bar"></span></div>
+    <div class="topbar-inner">
+      <div class="report-mark">Yao Interpreter</div>
+      <div class="language-switch" aria-label="语言切换">
+        <button type="button" data-set-lang="zh-CN" aria-pressed="false">简体</button>
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      </div>
+    </div>
+  </header>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <p class="eyebrow"><span data-lang="zh-CN">Skill 质量解读报告</span><span data-lang="en">Skill quality interpretation report</span></p>
+        <h1>yao-meta-skill</h1>
+        <p class="lead"><span data-lang="zh-CN">这是 Skill 工程化设计 Skill，用来把重复工作流、提示词、访谈记录或文档沉淀成可复用的智能体能力。它解决的核心问题是先判断是否值得 Skill 化，再按最轻模式补齐入口、参考资料、脚本、评估和治理边界。亮点是重视路由质量和证据链；如果只是一次性任务，就不应该强行创建 Skill。</span><span data-lang="en">This report explains how the Skill turns repeated workflows, prompts, notes, or documents into reusable agent capabilities. It focuses on trigger quality, progressive disclosure, evidence, governance boundaries, and the lightest reliable packaging mode.</span></p>
+        <div class="badges">
+          <span class="badge"><span data-lang="zh-CN">Skill 工程化</span><span data-lang="en">Skill engineering</span></span><span class="badge"><span data-lang="zh-CN">渐进披露</span><span data-lang="en">Progressive disclosure</span></span><span class="badge"><span data-lang="zh-CN">证据门禁</span><span data-lang="en">Evidence gates</span></span>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="score summary">
+        <div class="score-big"><strong>82</strong><span>/ 100</span></div>
+        <div class="decision"><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>仅在受控环境试读，先修复高风险问题。</div>
+        <div class="kpi-grid"><article class="kpi"><span><span data-lang="zh-CN">总分</span><span data-lang="en">Score</span></span><strong>82</strong></article><article class="kpi"><span><span data-lang="zh-CN">等级</span><span data-lang="en">Grade</span></span><strong>A</strong></article><article class="kpi"><span><span data-lang="zh-CN">风险</span><span data-lang="en">Risk</span></span><strong><span data-lang="zh-CN">高</span><span data-lang="en">high</span></strong></article><article class="kpi"><span><span data-lang="zh-CN">证据覆盖</span><span data-lang="en">Evidence</span></span><strong>80%</strong></article></div>
+      </aside>
+    </section>
+    <main id="main" class="layout">
+      <nav class="side-toc" aria-label="report navigation"><a href="#overview"><span data-lang="zh-CN">封面总览</span><span data-lang="en">Overview</span></a><a href="#position"><span data-lang="zh-CN">一句话定位</span><span data-lang="en">Positioning</span></a><a href="#use-cases"><span data-lang="zh-CN">适用场景</span><span data-lang="en">Use cases</span></a><a href="#caution"><span data-lang="zh-CN">谨慎场景</span><span data-lang="en">Cautions</span></a><a href="#quick-start"><span data-lang="zh-CN">快速使用</span><span data-lang="en">Quick start</span></a><a href="#outputs"><span data-lang="zh-CN">输出预期</span><span data-lang="en">Outputs</span></a><a href="#structure"><span data-lang="zh-CN">结构总览</span><span data-lang="en">Structure</span></a><a href="#disclosure"><span data-lang="zh-CN">渐进披露</span><span data-lang="en">Disclosure</span></a><a href="#workflow"><span data-lang="zh-CN">工作流</span><span data-lang="en">Workflow</span></a><a href="#scripts"><span data-lang="zh-CN">脚本依赖</span><span data-lang="en">Scripts</span></a><a href="#patterns"><span data-lang="zh-CN">设计模式</span><span data-lang="en">Patterns</span></a><a href="#score"><span data-lang="zh-CN">评分明细</span><span data-lang="en">Score</span></a><a href="#evidence"><span data-lang="zh-CN">证据链</span><span data-lang="en">Evidence</span></a><a href="#security"><span data-lang="zh-CN">安全审查</span><span data-lang="en">Security</span></a><a href="#prompts"><span data-lang="zh-CN">提示词库</span><span data-lang="en">Prompts</span></a><a href="#failures"><span data-lang="zh-CN">失败排查</span><span data-lang="en">Failures</span></a><a href="#roadmap"><span data-lang="zh-CN">改进路线</span><span data-lang="en">Roadmap</span></a><a href="#appendix"><span data-lang="zh-CN">附录</span><span data-lang="en">Appendix</span></a></nav>
+      <article><section class="report-section" id="overview"><div class="section-head"><span class="section-number">01</span><h2><span data-lang="zh-CN">封面总览</span><span data-lang="en">Overview</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">当前建议为“仅在受控环境试读，先修复高风险问题。”总分 82 / 100，风险等级为高。雷达图显示质量短板，资产分布显示包体重心，风险热力图显示问题集中位置。</span><span data-lang="en">The overview starts with score, risk, charts, and asset distribution so the reader can judge whether the Skill is worth adopting or studying.</span></p></article><div class="panel"><div class="chart-grid"><figure><svg viewBox="0 0 340 340" role="img" aria-label="评分雷达"><text class="chart-title" x="18" y="28">评分雷达</text><polygon points="170.0,144.5 186.4,150.5 195.1,165.6 192.1,182.8 178.7,194.0 161.3,194.0 147.9,182.8 144.9,165.6 153.6,150.5" fill="none" stroke="#e6e0d4" stroke-width="1"/><polygon points="170.0,119.0 202.8,130.9 220.2,161.1 214.2,195.5 187.4,217.9 152.6,217.9 125.8,195.5 119.8,161.1 137.2,130.9" fill="none" stroke="#e6e0d4" stroke-width="1"/><polygon points="170.0,93.5 219.2,111.4 245.3,156.7 236.3,208.2 196.2,241.9 143.8,241.9 103.7,208.3 94.7,156.7 120.8,111.4" fill="none" stroke="#e6e0d4" stroke-width="1"/><polygon points="170.0,68.0 235.6,91.9 270.5,152.3 258.3,221.0 204.9,265.8 135.1,265.8 81.7,221.0 69.5,152.3 104.4,91.9" fill="none" stroke="#e6e0d4" stroke-width="1"/><polygon points="170.0,68.0 226.2,103.0 270.5,152.3 251.0,216.8 192.4,231.6 157.5,204.2 81.7,221.0 83.9,154.8 104.4,91.9" fill="#EEF3F8" stroke="#1B365D" stroke-width="2"/><text x="170.0" y="26.0" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">规范兼容</text><text x="262.6" y="59.7" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">触发信号</text><text x="311.8" y="145.0" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">上下文效率</text><text x="294.7" y="242.0" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">结构资源</text><text x="219.3" y="305.3" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">使用就绪</text><text x="120.7" y="305.3" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">安全权限</text><text x="45.3" y="242.0" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">测试评估</text><text x="28.2" y="145.0" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">维护发布</text><text x="77.4" y="59.7" text-anchor="middle" dominant-baseline="middle" font-size="11" fill="#504e49">学习价值</text></svg><figcaption>雷达图展示 9 个评分维度的相对强弱。</figcaption></figure><figure><svg viewBox="0 0 420 280" role="img" aria-label="资产分布"><text class="chart-title" x="18" y="28">资产分布</text><circle cx="120" cy="130" r="68" fill="none" stroke="#1B365D" stroke-width="22" stroke-dasharray="31.42 68.58" stroke-dashoffset="-0.00" pathLength="100" transform="rotate(-90 120 130)"/><circle cx="120" cy="130" r="68" fill="none" stroke="#315982" stroke-width="22" stroke-dasharray="29.57 70.43" stroke-dashoffset="-31.42" pathLength="100" transform="rotate(-90 120 130)"/><circle cx="120" cy="130" r="68" fill="none" stroke="#6b6a64" stroke-width="22" stroke-dasharray="17.86 82.14" stroke-dashoffset="-60.99" pathLength="100" transform="rotate(-90 120 130)"/><circle cx="120" cy="130" r="68" fill="none" stroke="#b8b7b0" stroke-width="22" stroke-dasharray="12.53 87.47" stroke-dashoffset="-78.85" pathLength="100" transform="rotate(-90 120 130)"/><circle cx="120" cy="130" r="68" fill="none" stroke="#EEF3F8" stroke-width="22" stroke-dasharray="8.62 91.38" stroke-dashoffset="-91.38" pathLength="100" transform="rotate(-90 120 130)"/><text x="120" y="136" text-anchor="middle" font-size="18" fill="#1B365D">621</text><text x="220" y="82" font-size="12" fill="#504e49">scripts · 153</text><text x="220" y="106" font-size="12" fill="#504e49">reports · 144</text><text x="220" y="130" font-size="12" fill="#504e49">tests · 87</text><text x="220" y="154" font-size="12" fill="#504e49">examples · 61</text><text x="220" y="178" font-size="12" fill="#504e49">.previews · 42</text></svg><figcaption>目录分布显示包体重心和生成物比例。</figcaption></figure><figure><svg viewBox="0 0 340 280" role="img" aria-label="风险热力"><text class="chart-title" x="18" y="28">风险热力</text><rect x="70" y="182" width="74" height="54" rx="6" fill="#EEF3F8" stroke="#e6e0d4"/><text x="107" y="215" text-anchor="middle" fill="#151515" font-size="14">1</text><rect x="152" y="182" width="74" height="54" rx="6" fill="#ffffff" stroke="#e6e0d4"/><text x="189" y="215" text-anchor="middle" fill="#151515" font-size="14">0</text><rect x="234" y="182" width="74" height="54" rx="6" fill="#ffffff" stroke="#e6e0d4"/><text x="271" y="215" text-anchor="middle" fill="#151515" font-size="14">0</text><rect x="70" y="120" width="74" height="54" rx="6" fill="#ffffff" stroke="#e6e0d4"/><text x="107" y="153" text-anchor="middle" fill="#151515" font-size="14">0</text><rect x="152" y="120" width="74" height="54" rx="6" fill="#d8e5f0" stroke="#e6e0d4"/><text x="189" y="153" text-anchor="middle" fill="#151515" font-size="14">2</text><rect x="234" y="120" width="74" height="54" rx="6" fill="#ffffff" stroke="#e6e0d4"/><text x="271" y="153" text-anchor="middle" fill="#151515" font-size="14">0</text><rect x="70" y="58" width="74" height="54" rx="6" fill="#ffffff" stroke="#e6e0d4"/><text x="107" y="91" text-anchor="middle" fill="#151515" font-size="14">0</text><rect x="152" y="58" width="74" height="54" rx="6" fill="#d8e5f0" stroke="#e6e0d4"/><text x="189" y="91" text-anchor="middle" fill="#151515" font-size="14">2</text><rect x="234" y="58" width="74" height="54" rx="6" fill="#ffffff" stroke="#e6e0d4"/><text x="271" y="91" text-anchor="middle" fill="#151515" font-size="14">0</text><text x="190" y="258" text-anchor="middle" font-size="12" fill="#68625a">发生概率</text><text x="22" y="152" text-anchor="middle" font-size="12" fill="#68625a" transform="rotate(-90 22 152)">影响程度</text></svg><figcaption>热力图按影响程度和发生概率聚合发现项。</figcaption></figure><figure><svg viewBox="0 0 680 180" role="img" aria-label="工作流图"><text class="chart-title" x="18" y="30">交付流程</text><path d="M116 94 H146" stroke="#1B365D" stroke-width="1.5"/><path d="M228 94 H258" stroke="#1B365D" stroke-width="1.5"/><path d="M340 94 H370" stroke="#1B365D" stroke-width="1.5"/><path d="M452 94 H482" stroke="#1B365D" stroke-width="1.5"/><path d="M564 94 H594" stroke="#1B365D" stroke-width="1.5"/><rect x="34" y="70" width="82" height="48" rx="8" fill="#ffffff" stroke="#e6e0d4"/><text x="75" y="100" text-anchor="middle" font-size="13" fill="#151515">输入</text><rect x="146" y="70" width="82" height="48" rx="8" fill="#ffffff" stroke="#e6e0d4"/><text x="187" y="100" text-anchor="middle" font-size="13" fill="#151515">隔离</text><rect x="258" y="70" width="82" height="48" rx="8" fill="#ffffff" stroke="#e6e0d4"/><text x="299" y="100" text-anchor="middle" font-size="13" fill="#151515">解析</text><rect x="370" y="70" width="82" height="48" rx="8" fill="#ffffff" stroke="#e6e0d4"/><text x="411" y="100" text-anchor="middle" font-size="13" fill="#151515">评分</text><rect x="482" y="70" width="82" height="48" rx="8" fill="#ffffff" stroke="#e6e0d4"/><text x="523" y="100" text-anchor="middle" font-size="13" fill="#151515">报告</text><rect x="594" y="70" width="82" height="48" rx="8" fill="#ffffff" stroke="#e6e0d4"/><text x="635" y="100" text-anchor="middle" font-size="13" fill="#151515">QA</text></svg><figcaption>报告从不可信输入开始，经隔离、解析、评分和 QA 后输出。</figcaption></figure></div></div></section><section class="report-section" id="position"><div class="section-head"><span class="section-number">02</span><h2><span data-lang="zh-CN">一句话定位</span><span data-lang="en">Positioning</span></h2></div><article class="panel"><p class="lead-in"><span data-lang="zh-CN">这个 Skill 用于把工作流、提示词、访谈记录、文档或笔记转化为可复用的智能体技能，也支持对既有 Skill 做重构、评估、打包和团队分发准备。</span><span data-lang="en">Create, refactor, evaluate, and package agent skills from workflows, prompts, transcripts, docs, or notes. Use for skill creation, reusable workflow packaging, skill improvement, evals, and team-ready distribution.</span></p><h3><span data-lang="zh-CN">解读重点</span><span data-lang="en">Interpretation focus</span></h3><ul><li><span data-lang="zh-CN">它的核心不是生成一段提示词，而是把可重复的工作方式整理成可路由、可复用、可评估的 Skill 包。</span><span data-lang="en">Its core job is packaging reusable ways of working into routeable, reusable, and evaluable Skill packages.</span></li><li><span data-lang="zh-CN">它强调先写描述字段并测试触发质量，说明这个 Skill 把“何时使用”看作 Skill 成败的第一入口。</span><span data-lang="en">It treats the frontmatter description and route quality as the first success condition.</span></li><li><span data-lang="zh-CN">它把轻量脚手架模式和高信任治理模式分开，避免把所有流程都做成重治理工程。</span><span data-lang="en">It separates lightweight Scaffold work from Governed high-trust packages.</span></li></ul></article></section><section class="report-section" id="use-cases"><div class="section-head"><span class="section-number">03</span><h2><span data-lang="zh-CN">适用场景</span><span data-lang="en">Use cases</span></h2></div><article class="panel"><ul><li><span data-lang="zh-CN">从零创建 Skill：当用户提供重复工作流、提示词、访谈记录、文档或笔记，并希望沉淀成可复用能力时使用。</span><span data-lang="en">Create reusable agent skills from workflows, prompts, transcripts, docs, or notes.</span></li><li><span data-lang="zh-CN">重构已有 Skill：当 SKILL.md 过长、规则散乱、脚本和参考资料没有分层时，用它把入口、references/、scripts/、reports/ 重新分界。</span><span data-lang="en">Refactor existing skills into lean entrypoints, references, scripts, reports, and gates.</span></li><li><span data-lang="zh-CN">评估与打包团队 Skill：当 Skill 准备给团队复用时，用它判断应采用脚手架、生产、库级还是治理模式，并补齐接口声明、评估用例、清单文件和门禁。</span><span data-lang="en">Evaluate and package team-ready skills with the lightest reliable operating mode.</span></li><li><span data-lang="zh-CN">处理高信任交付：当 Skill 涉及文件证据、发布关键流程或治理要求时，用它要求输入文件证据、输出契约、回滚边界、信任报告等可审计标签。</span><span data-lang="en">Handle governed skill packages with explicit evidence, rollback, and trust boundaries.</span></li></ul></article></section><section class="report-section" id="caution"><div class="section-head"><span class="section-number">04</span><h2><span data-lang="zh-CN">谨慎场景</span><span data-lang="en">Cautions</span></h2></div><article class="panel"><ul><li><span data-lang="zh-CN">一次性任务不应强行创建 Skill。只有存在重复使用价值和可复用输出契约时，才进入 Skill 化流程。</span><span data-lang="en">一次性任务不应强行创建 Skill。只有存在重复使用价值和可复用输出契约时，才进入 Skill 化流程。</span></li><li><span data-lang="zh-CN">不要把所有治理门禁默认塞进轻量个人 Skill。脚手架、生产、库级、治理模式要按风险和复用范围逐级选择。</span><span data-lang="en">不要把所有治理门禁默认塞进轻量个人 Skill。脚手架、生产、库级、治理模式要按风险和复用范围逐级选择。</span></li><li><span data-lang="zh-CN">不要伪造证据。遥测、审批、基准、信任报告缺失时必须标为缺失证据，而不是写成已完成。</span><span data-lang="en">不要伪造证据。遥测、审批、基准、信任报告缺失时必须标为缺失证据，而不是写成已完成。</span></li><li><span data-lang="zh-CN">它不是具体业务任务执行器。目标是设计、重构、评估和打包 Skill，而不是代替目标 Skill 完成业务交付。</span><span data-lang="en">它不是具体业务任务执行器。目标是设计、重构、评估和打包 Skill，而不是代替目标 Skill 完成业务交付。</span></li></ul></article></section><section class="report-section" id="quick-start"><div class="section-head"><span class="section-number">05</span><h2><span data-lang="zh-CN">快速使用</span><span data-lang="en">Quick start</span></h2></div><article class="panel"><h3><span data-lang="zh-CN">调用前需要准备</span><span data-lang="en">Required before use</span></h3><ul><li><span data-lang="zh-CN">原始材料：重复工作流、提示词、访谈记录、文档、笔记，或一个已有 Skill 包。</span><span data-lang="en">原始材料：重复工作流、提示词、访谈记录、文档、笔记，或一个已有 Skill 包。</span></li><li><span data-lang="zh-CN">目标模式：脚手架、生产、库级或治理模式，用于决定需要多少门禁和资产。</span><span data-lang="en">目标模式：脚手架、生产、库级或治理模式，用于决定需要多少门禁和资产。</span></li><li><span data-lang="zh-CN">输出契约：期望生成的 SKILL.md、接口声明、参考资料、脚本、报告、评估或发布包。</span><span data-lang="en">输出契约：期望生成的 SKILL.md、接口声明、参考资料、脚本、报告、评估或发布包。</span></li><li><span data-lang="zh-CN">约束信息：排除项、安全边界、团队复用范围、审查节奏和回滚边界。</span><span data-lang="en">约束信息：排除项、安全边界、团队复用范围、审查节奏和回滚边界。</span></li></ul></article><article class="panel prompt"><button class="copy-button" data-copy-source="#quick-command" data-copied-label="已复制">复制命令</button><pre id="quick-command"><code>git clone https://github.com/yaojingang/yao-meta-skill.git && python3 scripts/cli.py analyze ./yao-meta-skill --out reports/generated</code></pre></article></section><section class="report-section" id="outputs"><div class="section-head"><span class="section-number">06</span><h2><span data-lang="zh-CN">输出预期</span><span data-lang="en">Outputs</span></h2></div><article class="panel"><ul><li><span data-lang="zh-CN">SKILL.md：保持入口精简，只放触发、核心流程、输出契约和必要边界。</span><span data-lang="en">SKILL.md</span></li><li><span data-lang="zh-CN">agents/interface.yaml：当 Skill 需要被代理或工具系统稳定调用时，声明输入输出接口。</span><span data-lang="en">agents/interface.yaml</span></li><li><span data-lang="zh-CN">references/：承载方法论、评分规则、治理说明和长文档，避免污染初始上下文。</span><span data-lang="en">references/artifact-design-doctrine.md</span></li><li><span data-lang="zh-CN">scripts/：承载稳定、可重复的机械逻辑，减少手工复制代码。</span><span data-lang="en">references/governance.md</span></li><li><span data-lang="zh-CN">reports/、evals/、manifest.json：在团队复用、治理或发布场景中补齐质量证据和分发信息。</span><span data-lang="en">references/intent-dialogue.md</span></li><li><span data-lang="zh-CN">未提取到明确输出文件。</span><span data-lang="en">references/operating-modes.md</span></li><li><span data-lang="zh-CN">未提取到明确输出文件。</span><span data-lang="en">references/output-eval-method.md</span></li><li><span data-lang="zh-CN">未提取到明确输出文件。</span><span data-lang="en">references/resource-boundaries.md</span></li></ul></article></section><section class="report-section" id="structure"><div class="section-head"><span class="section-number">07</span><h2><span data-lang="zh-CN">结构总览</span><span data-lang="en">Structure</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">这个包一共有 621 个文件，分布在 29 个顶层入口里。目录分层决定了入口是否轻、长规则是否下沉、脚本和生成物是否会污染初始上下文。 references/ 有 35 个文件，说明部分长规则已经从入口下沉。 scripts/ 有 153 个文件，说明存在可重复执行的机械逻辑。 reports/ 有 144 个文件，说明有生成物或评审材料；这类目录要和正式说明分清，避免以后反复扫描旧报告。 evals/ 存在，说明作者已经开始把触发和输出质量做成可回归材料。</span><span data-lang="en">The package contains 621 files across 29 top-level groups. The table below shows where the package weight sits.</span></p></article><article class="panel"><table><thead><tr><th><span data-lang="zh-CN">目录</span><span data-lang="en">Directory</span></th><th class="num"><span data-lang="zh-CN">文件数</span><span data-lang="en">Files</span></th></tr></thead><tbody><tr><td>.github</td><td class='num'>1</td></tr><tr><td>.gitignore</td><td class='num'>1</td></tr><tr><td>.previews</td><td class='num'>42</td></tr><tr><td>AGENTS.md</td><td class='num'>1</td></tr><tr><td>LICENSE</td><td class='num'>1</td></tr><tr><td>Makefile</td><td class='num'>1</td></tr><tr><td>README.md</td><td class='num'>1</td></tr><tr><td>SKILL.md</td><td class='num'>1</td></tr><tr><td>VERSION</td><td class='num'>1</td></tr><tr><td>agents</td><td class='num'>1</td></tr><tr><td>assets</td><td class='num'>4</td></tr><tr><td>docs</td><td class='num'>7</td></tr><tr><td>evals</td><td class='num'>29</td></tr><tr><td>evidence</td><td class='num'>6</td></tr><tr><td>examples</td><td class='num'>61</td></tr><tr><td>failures</td><td class='num'>9</td></tr><tr><td>manifest.json</td><td class='num'>1</td></tr><tr><td>references</td><td class='num'>35</td></tr><tr><td>registry</td><td class='num'>5</td></tr><tr><td>reports</td><td class='num'>144</td></tr><tr><td>requirements-ci.txt</td><td class='num'>1</td></tr><tr><td>runtime</td><td class='num'>2</td></tr><tr><td>schemas</td><td class='num'>3</td></tr><tr><td>scripts</td><td class='num'>153</td></tr><tr><td>security</td><td class='num'>8</td></tr><tr><td>skill-ir</td><td class='num'>3</td></tr><tr><td>skill_atlas</td><td class='num'>10</td></tr><tr><td>templates</td><td class='num'>2</td></tr><tr><td>tests</td><td class='num'>87</td></tr></tbody></table></article></section><section class="report-section" id="disclosure"><div class="section-head"><span class="section-number">08</span><h2><span data-lang="zh-CN">渐进披露</span><span data-lang="en">Disclosure</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">入口约 805 Token，参考资料 35 个，脚本 232 个。 入口相对克制，Agent 先读入口就能知道怎么触发；更长的解释可以继续放在 references/ 里。</span><span data-lang="en">The entrypoint is about 805 Token, with 35 references and 232 scripts. Progressive disclosure is judged by how much detail is moved out of SKILL.md.</span></p></article></section><section class="report-section" id="workflow"><div class="section-head"><span class="section-number">09</span><h2><span data-lang="zh-CN">工作流</span><span data-lang="en">Workflow</span></h2></div><article class="panel"><ul><li><span data-lang="zh-CN">先判断是否真的需要创建 Skill。一次性任务、没有复用价值或没有稳定输出契约时，直接拒绝 Skill 化。</span><span data-lang="en">For one-off/no reusable process: Do not create a skill; near-neighbor; require repeated use + reusable output contract.</span></li><li><span data-lang="zh-CN">明确任务、输出、排除项、约束、质量标准和最轻量的适用模式。</span><span data-lang="en">Capture job, output, exclusions, constraints, standards, and the lightest fit.</span></li><li><span data-lang="zh-CN">按外部标杆、用户材料、本地相邻 Skill 的顺序扫描参考，只暴露不确定性或冲突。</span><span data-lang="en">Scan references in order: external benchmark, user source, local fit; surface only uncertainty or conflict.</span></li><li><span data-lang="zh-CN">先写描述字段并测试路由质量，再按需要增加 references、scripts、reports 和门禁。</span><span data-lang="en">Write description early, test route quality, then add only earned folders and gates.</span></li><li><span data-lang="zh-CN">只有在确有价值时，才补充输出风险、产物设计、提示词质量、系统模型和后续演进方向。</span><span data-lang="en">Add output-risk, artifact-design, prompt-quality, system-model, and next directions only when useful.</span></li></ul></article></section><section class="report-section" id="scripts"><div class="section-head"><span class="section-number">10</span><h2><span data-lang="zh-CN">脚本依赖</span><span data-lang="en">Scripts</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">静态扫描不运行目标代码，只看危险命令、网络访问、密钥线索、提示注入和隐藏字符。本次在可执行面和文本面共发现 32 个需要关注的扫描命中。</span><span data-lang="en">The script section performs static scanning only. It found 32 scan hits across executable and text surfaces.</span></p></article><article class="panel"><table><thead><tr><th><span data-lang="zh-CN">静态扫描项</span><span data-lang="en">Static scan item</span></th><th class="num"><span data-lang="zh-CN">命中数</span><span data-lang="en">Hits</span></th></tr></thead><tbody><tr><td>危险命令</td><td class='num'>1</td></tr><tr><td>网络访问</td><td class='num'>10</td></tr><tr><td>密钥线索</td><td class='num'>21</td></tr><tr><td>提示注入</td><td class='num'>0</td></tr><tr><td>隐藏字符</td><td class='num'>0</td></tr></tbody></table></article></section><section class="report-section" id="patterns"><div class="section-head"><span class="section-number">11</span><h2><span data-lang="zh-CN">设计模式</span><span data-lang="en">Patterns</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">值得学习的部分可以作为同类 Skill 的写法参考；谨慎模仿的部分不一定错误，但复制前要确认场景、权限和维护成本是否匹配。</span><span data-lang="en">The design pattern section separates reusable strengths from patterns that should be copied with caution.</span></p></article><div class="grid-2"><article class="panel"><h3><span data-lang="zh-CN">值得学习</span><span data-lang="en">Worth learning</span></h3><ul><li>入口、参考资料和脚本分层，符合渐进披露思路。</li><li>包体包含可复核的测试或触发样例。</li><li>入口中出现输出契约信号，便于用户判断成功结果。</li></ul></article><article class="panel"><h3><span data-lang="zh-CN">谨慎模仿</span><span data-lang="en">Copy with caution</span></h3><ul><li>未发现明显结构反例；仍建议人工复核高风险文件。</li></ul></article></div></section><section class="report-section" id="score"><div class="section-head"><span class="section-number">12</span><h2><span data-lang="zh-CN">评分明细</span><span data-lang="en">Score</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">当前总分 82 / 100，等级 A，风险等级为高。9 个维度里，低分项会直接影响采用建议；后续证据链会给出扣分来源、修复动作和验收标准。</span><span data-lang="en">Total score is 82 / 100, grade A, with high risk. The score is calculated across 9 dimensions.</span></p></article><div class="panel"><div class="score-row"><span><span data-lang="zh-CN">规范兼容</span><span data-lang="en">Spec compatibility</span></span><div class="bar"><i style="--score:100%"></i></div><strong>12/12</strong></div><div class="score-row"><span><span data-lang="zh-CN">触发信号</span><span data-lang="en">Trigger signal</span></span><div class="bar"><i style="--score:85%"></i></div><strong>12/14</strong></div><div class="score-row"><span><span data-lang="zh-CN">上下文效率</span><span data-lang="en">Context efficiency</span></span><div class="bar"><i style="--score:100%"></i></div><strong>12/12</strong></div><div class="score-row"><span><span data-lang="zh-CN">结构资源</span><span data-lang="en">Resource structure</span></span><div class="bar"><i style="--score:91%"></i></div><strong>11/12</strong></div><div class="score-row"><span><span data-lang="zh-CN">使用就绪</span><span data-lang="en">Usage readiness</span></span><div class="bar"><i style="--score:64%"></i></div><strong>9/14</strong></div><div class="score-row"><span><span data-lang="zh-CN">安全权限</span><span data-lang="en">Safety and permissions</span></span><div class="bar"><i style="--score:35%"></i></div><strong>5/14</strong></div><div class="score-row"><span><span data-lang="zh-CN">测试评估</span><span data-lang="en">Tests and evals</span></span><div class="bar"><i style="--score:100%"></i></div><strong>10/10</strong></div><div class="score-row"><span><span data-lang="zh-CN">维护发布</span><span data-lang="en">Maintenance and release</span></span><div class="bar"><i style="--score:85%"></i></div><strong>6/7</strong></div><div class="score-row"><span><span data-lang="zh-CN">学习价值</span><span data-lang="en">Learning value</span></span><div class="bar"><i style="--score:100%"></i></div><strong>5/5</strong></div></div></section><section class="report-section" id="evidence"><div class="section-head"><span class="section-number">13</span><h2><span data-lang="zh-CN">证据链</span><span data-lang="en">Evidence</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">每个扣分项都绑定到文件、行号和原始片段。证据用于复核结论是否成立，验收标准用于判断修复后是否可以重新评分。</span><span data-lang="en">This section explains where each deduction comes from: file, line, source snippet, recommendation, and acceptance criteria.</span></p></article><article class="finding"><div class="finding-head"><h3>描述字段缺少不适用边界。</h3><span class="severity medium"><span data-lang="zh-CN">中</span><span data-lang="en">medium</span></span></div><p><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>补充相邻任务和慎用场景。</p><p><strong><span data-lang="zh-CN">验收：</span><span data-lang="en">Acceptance:</span></strong>描述字段明确至少一个非目标。</p><div class="evidence"><strong>SKILL.md:3</strong><br><span data-lang="zh-CN">证据释义：该片段来自 前置描述字段，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: Create, refactor, evaluate, and package agent skills from workflows, prompts, transcripts, docs, or notes. Use for skill creation, reusable workflow packaging, skill improvement, evals, and team-ready distribution.</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>Create, refactor, evaluate, and package agent skills from workflows, prompts, transcripts, docs, or notes. Use for skill creation, reusable workflow packaging, skill improvement, evals, and team-ready distribution.</code></pre></details></div></article><article class="finding"><div class="finding-head"><h3>包体文件较多，报告需要区分核心文件和生成物。</h3><span class="severity low"><span data-lang="zh-CN">低</span><span data-lang="en">low</span></span></div><p><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>在 README 或报告中标注核心资产。</p><p><strong><span data-lang="zh-CN">验收：</span><span data-lang="en">Acceptance:</span></strong>用户能区分入口、脚本、参考、生成报告。</p><div class="evidence"><strong>.:None</strong><br><span data-lang="zh-CN">证据释义：该片段来自 资产清单，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: file_count=621</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>file_count=621</code></pre></details></div></article><article class="finding"><div class="finding-head"><h3>静态扫描发现 1 个危险命令线索。</h3><span class="severity high"><span data-lang="zh-CN">高</span><span data-lang="en">high</span></span></div><p><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>为危险命令增加解释、确认和最小权限，无法解释时移除。</p><p><strong><span data-lang="zh-CN">验收：</span><span data-lang="en">Acceptance:</span></strong>高风险命令都有用途、范围、确认和回滚边界。</p><div class="evidence"><strong>AGENTS.md:90</strong><br><span data-lang="zh-CN">证据释义：该片段来自 未解释的递归删除命令，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: Clean test-only scratch directories after verification with `find tests -maxdepth 1 \( -name &#x27;tmp&#x27; -o -name &#x27;tmp_*&#x27; \) -type d -exec rm -rf {} +`. Do not clean unrelated untracked files.</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>Clean test-only scratch directories after verification with `find tests -maxdepth 1 \( -name &#x27;tmp&#x27; -o -name &#x27;tmp_*&#x27; \) -type d -exec rm -rf {} +`. Do not clean unrelated untracked files.</code></pre></details></div></article><article class="finding"><div class="finding-head"><h3>发现 10 个网络访问线索。</h3><span class="severity medium"><span data-lang="zh-CN">中</span><span data-lang="en">medium</span></span></div><p><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>说明网络访问对象、数据类型和用户确认要求。</p><p><strong><span data-lang="zh-CN">验收：</span><span data-lang="en">Acceptance:</span></strong>外部访问边界清晰且无敏感外传。</p><div class="evidence"><strong>scripts/check_update.py:15</strong><br><span data-lang="zh-CN">证据释义：该片段来自 硬编码 URL，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: DEFAULT_VERSION_URL = &quot;https://raw.githubusercontent.com/yaojingang/yao-meta-skill/main/VERSION&quot;</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>DEFAULT_VERSION_URL = &quot;https://raw.githubusercontent.com/yaojingang/yao-meta-skill/main/VERSION&quot;</code></pre></details></div><div class="evidence"><strong>scripts/check_update.py:16</strong><br><span data-lang="zh-CN">证据释义：该片段来自 硬编码 URL，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: DEFAULT_MANIFEST_URL = &quot;https://raw.githubusercontent.com/yaojingang/yao-meta-skill/main/manifest.json&quot;</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>DEFAULT_MANIFEST_URL = &quot;https://raw.githubusercontent.com/yaojingang/yao-meta-skill/main/manifest.json&quot;</code></pre></details></div></article><article class="finding"><div class="finding-head"><h3>发现 21 个密钥或敏感文件线索。</h3><span class="severity high"><span data-lang="zh-CN">高</span><span data-lang="en">high</span></span></div><p><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>避免读取或打印敏感信息；需要凭据时只声明环境变量名。</p><p><strong><span data-lang="zh-CN">验收：</span><span data-lang="en">Acceptance:</span></strong>报告不泄露密钥值，脚本不外传敏感文件。</p><div class="evidence"><strong>evidence/world_class/templates/provider-holdout.intake.json:22</strong><br><span data-lang="zh-CN">证据释义：该片段来自 密钥或令牌变量，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: &quot;credential_env&quot;: &quot;&lt;PROVIDER_API_KEY_ENV&gt;&quot;,</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>&quot;credential_env&quot;: &quot;&lt;PROVIDER_API_KEY_ENV&gt;&quot;,</code></pre></details></div><div class="evidence"><strong>scripts/github_benchmark_scan.py:98</strong><br><span data-lang="zh-CN">证据释义：该片段来自 密钥或令牌变量，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: token = os.getenv(&quot;GITHUB_TOKEN&quot;) or os.getenv(&quot;GH_TOKEN&quot;)</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>token = os.getenv(&quot;GITHUB_TOKEN&quot;) or os.getenv(&quot;GH_TOKEN&quot;)</code></pre></details></div></article></section><section class="report-section" id="security"><div class="section-head"><span class="section-number">14</span><h2><span data-lang="zh-CN">安全审查</span><span data-lang="en">Security</span></h2></div><article class="finding"><div class="finding-head"><h3>静态扫描发现 1 个危险命令线索。</h3><span class="severity high"><span data-lang="zh-CN">高</span><span data-lang="en">high</span></span></div><p><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>为危险命令增加解释、确认和最小权限，无法解释时移除。</p><p><strong><span data-lang="zh-CN">验收：</span><span data-lang="en">Acceptance:</span></strong>高风险命令都有用途、范围、确认和回滚边界。</p><div class="evidence"><strong>AGENTS.md:90</strong><br><span data-lang="zh-CN">证据释义：该片段来自 未解释的递归删除命令，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: Clean test-only scratch directories after verification with `find tests -maxdepth 1 \( -name &#x27;tmp&#x27; -o -name &#x27;tmp_*&#x27; \) -type d -exec rm -rf {} +`. Do not clean unrelated untracked files.</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>Clean test-only scratch directories after verification with `find tests -maxdepth 1 \( -name &#x27;tmp&#x27; -o -name &#x27;tmp_*&#x27; \) -type d -exec rm -rf {} +`. Do not clean unrelated untracked files.</code></pre></details></div></article><article class="finding"><div class="finding-head"><h3>发现 10 个网络访问线索。</h3><span class="severity medium"><span data-lang="zh-CN">中</span><span data-lang="en">medium</span></span></div><p><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>说明网络访问对象、数据类型和用户确认要求。</p><p><strong><span data-lang="zh-CN">验收：</span><span data-lang="en">Acceptance:</span></strong>外部访问边界清晰且无敏感外传。</p><div class="evidence"><strong>scripts/check_update.py:15</strong><br><span data-lang="zh-CN">证据释义：该片段来自 硬编码 URL，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: DEFAULT_VERSION_URL = &quot;https://raw.githubusercontent.com/yaojingang/yao-meta-skill/main/VERSION&quot;</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>DEFAULT_VERSION_URL = &quot;https://raw.githubusercontent.com/yaojingang/yao-meta-skill/main/VERSION&quot;</code></pre></details></div><div class="evidence"><strong>scripts/check_update.py:16</strong><br><span data-lang="zh-CN">证据释义：该片段来自 硬编码 URL，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: DEFAULT_MANIFEST_URL = &quot;https://raw.githubusercontent.com/yaojingang/yao-meta-skill/main/manifest.json&quot;</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>DEFAULT_MANIFEST_URL = &quot;https://raw.githubusercontent.com/yaojingang/yao-meta-skill/main/manifest.json&quot;</code></pre></details></div></article><article class="finding"><div class="finding-head"><h3>发现 21 个密钥或敏感文件线索。</h3><span class="severity high"><span data-lang="zh-CN">高</span><span data-lang="en">high</span></span></div><p><strong><span data-lang="zh-CN">建议：</span><span data-lang="en">Recommendation:</span></strong>避免读取或打印敏感信息；需要凭据时只声明环境变量名。</p><p><strong><span data-lang="zh-CN">验收：</span><span data-lang="en">Acceptance:</span></strong>报告不泄露密钥值，脚本不外传敏感文件。</p><div class="evidence"><strong>evidence/world_class/templates/provider-holdout.intake.json:22</strong><br><span data-lang="zh-CN">证据释义：该片段来自 密钥或令牌变量，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: &quot;credential_env&quot;: &quot;&lt;PROVIDER_API_KEY_ENV&gt;&quot;,</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>&quot;credential_env&quot;: &quot;&lt;PROVIDER_API_KEY_ENV&gt;&quot;,</code></pre></details></div><div class="evidence"><strong>scripts/github_benchmark_scan.py:98</strong><br><span data-lang="zh-CN">证据释义：该片段来自 密钥或令牌变量，用于支撑上方发现；原文可在详情中查看。</span><span data-lang="en">Evidence: token = os.getenv(&quot;GITHUB_TOKEN&quot;) or os.getenv(&quot;GH_TOKEN&quot;)</span><details class="evidence-raw"><summary>原始证据</summary><pre><code>token = os.getenv(&quot;GITHUB_TOKEN&quot;) or os.getenv(&quot;GH_TOKEN&quot;)</code></pre></details></div></article></section><section class="report-section" id="prompts"><div class="section-head"><span class="section-number">15</span><h2><span data-lang="zh-CN">提示词库</span><span data-lang="en">Prompts</span></h2></div><article class="panel prompt"><button class="copy-button" data-copy-source="#prompt-1" data-copied-label="已复制">复制</button><pre id="prompt-1"><code>请解读这个 Skill 的用途、适用场景、触发方式、输入输出要求和最佳使用方法，并生成中文 HTML 报告。</code></pre></article><article class="panel prompt"><button class="copy-button" data-copy-source="#prompt-2" data-copied-label="已复制">复制</button><pre id="prompt-2"><code>请重点分析这个 Skill 的 SKILL.md 结构、脚本设计、渐进披露方式和安全风险，给出 100 分评分和改进路线图。</code></pre></article><article class="panel prompt"><button class="copy-button" data-copy-source="#prompt-3" data-copied-label="已复制">复制</button><pre id="prompt-3"><code>请把这个 Skill 当作学习样例，提炼其中值得复用的设计模式，同时指出不建议模仿的写法。</code></pre></article></section><section class="report-section" id="failures"><div class="section-head"><span class="section-number">16</span><h2><span data-lang="zh-CN">失败排查</span><span data-lang="en">Failures</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">报告不可靠通常来自四类问题：目标路径错误、证据缺失、红线风险导致建议降级、HTML 打印样式异常。这些问题属于解释器失效模式，不等同于目标 Skill 的业务执行失败。</span><span data-lang="en">Failure troubleshooting explains why the report may be incomplete, degraded, or untrusted.</span></p></article><article class="panel"><table><thead><tr><th><span data-lang="zh-CN">失败模式</span><span data-lang="en">Failure mode</span></th><th><span data-lang="zh-CN">可能原因</span><span data-lang="en">Likely cause</span></th><th><span data-lang="zh-CN">处理</span><span data-lang="en">Handling</span></th></tr></thead><tbody><tr><td>没有识别到 Skill</td><td>缺少 SKILL.md 或路径错误</td><td>标记规范兼容失败</td></tr><tr><td>分数较高但风险严重</td><td>红线规则命中</td><td>推荐动作降级为暂缓使用</td></tr><tr><td>报告没有证据</td><td>发现项未绑定来源</td><td>降低置信度并补证据</td></tr><tr><td>HTML 打印错位</td><td>CSS 缺少打印规则</td><td>使用打印媒体样式复核</td></tr></tbody></table></article></section><section class="report-section" id="roadmap"><div class="section-head"><span class="section-number">17</span><h2><span data-lang="zh-CN">改进路线</span><span data-lang="en">Roadmap</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">优先处理最影响采用的缺口。每一项都包含动作和验收标准，修完后可以重新跑报告，确认分数、风险和建议是否变化。</span><span data-lang="en">The roadmap focuses on the highest-priority issues and pairs each action with acceptance criteria.</span></p></article><article class="panel"><span class="tag">P1</span><h3>发现 21 个密钥或敏感文件线索。</h3><p>避免读取或打印敏感信息；需要凭据时只声明环境变量名。</p><p><strong>验收：</strong>报告不泄露密钥值，脚本不外传敏感文件。</p></article><article class="panel"><span class="tag">P1</span><h3>静态扫描发现 1 个危险命令线索。</h3><p>为危险命令增加解释、确认和最小权限，无法解释时移除。</p><p><strong>验收：</strong>高风险命令都有用途、范围、确认和回滚边界。</p></article><article class="panel"><span class="tag">P2</span><h3>发现 10 个网络访问线索。</h3><p>说明网络访问对象、数据类型和用户确认要求。</p><p><strong>验收：</strong>外部访问边界清晰且无敏感外传。</p></article></section><section class="report-section" id="appendix"><div class="section-head"><span class="section-number">18</span><h2><span data-lang="zh-CN">附录</span><span data-lang="en">Appendix</span></h2></div><article class="panel analysis-note"><p><span data-lang="zh-CN">附录放的是原始材料和机器可读指标，适合复查报告是否算错、是否漏扫、是否被大文件或生成物影响。一般读者不需要从这里开始，只有要复核证据或二次处理数据时才需要展开。</span><span data-lang="en">The appendix keeps raw metrics and large-file details for audit or downstream processing.</span></p></article><details open><summary>最大文件</summary><pre class="file-tree"><code>reports/review-studio.json
+reports/review-viewer.json
+reports/description_optimization.json
+reports/compiled_targets.json
+examples/team-frontend-review/optimization/reports/description_optimization.json
+examples/governed-incident-command/optimization/reports/description_optimization.json
+.previews/yao-meta-skill-v2-report-demo/geo-content-brief-skill/reports/review-studio.json
+reports/evidence_consistency.json
+reports/security_trust_report.json
+reports/review-studio.html</code></pre></details><details><summary>原始指标</summary><pre><code>{
+  &quot;source&quot;: {
+    &quot;input&quot;: &quot;https://github.com/yaojingang/yao-meta-skill/tree/31ce04c&quot;,
+    &quot;resolved_root&quot;: &quot;https://github.com/yaojingang/yao-meta-skill/tree/31ce04c&quot;,
+    &quot;archive_warnings&quot;: []
+  },
+  &quot;scorecard&quot;: {
+    &quot;total&quot;: 82,
+    &quot;grade&quot;: &quot;A&quot;,
+    &quot;risk_level&quot;: &quot;high&quot;,
+    &quot;recommendation&quot;: &quot;仅在受控环境试读，先修复高风险问题。&quot;,
+    &quot;dimensions&quot;: {
+      &quot;spec_compatibility&quot;: {
+        &quot;label&quot;: &quot;规范兼容&quot;,
+        &quot;score&quot;: 12,
+        &quot;max&quot;: 12
+      },
+      &quot;trigger_signal&quot;: {
+        &quot;label&quot;: &quot;触发信号&quot;,
+        &quot;score&quot;: 12,
+        &quot;max&quot;: 14
+      },
+      &quot;context_efficiency&quot;: {
+        &quot;label&quot;: &quot;上下文效率&quot;,
+        &quot;score&quot;: 12,
+        &quot;max&quot;: 12
+      },
+      &quot;resource_structure&quot;: {
+        &quot;label&quot;: &quot;结构资源&quot;,
+        &quot;score&quot;: 11,
+        &quot;max&quot;: 12
+      },
+      &quot;usage_readiness&quot;: {
+        &quot;label&quot;: &quot;使用就绪&quot;,
+        &quot;score&quot;: 9,
+        &quot;max&quot;: 14
+      },
+      &quot;safety_permissions&quot;: {
+        &quot;label&quot;: &quot;安全权限&quot;,
+        &quot;score&quot;: 5,
+        &quot;max&quot;: 14
+      },
+      &quot;tests_evals&quot;: {
+        &quot;label&quot;: &quot;测试评估&quot;,
+        &quot;score&quot;: 10,
+        &quot;max&quot;: 10
+      },
+      &quot;maintenance_release&quot;: {
+        &quot;label&quot;: &quot;维护发布&quot;,
+        &quot;score&quot;: 6,
+        &quot;max&quot;: 7
+      },
+      &quot;learning_value&quot;: {
+        &quot;label&quot;: &quot;学习价值&quot;,
+        &quot;score&quot;: 5,
+        &quot;max&quot;: 5
+      }
+    },
+    &quot;max_total&quot;: 100
+  },
+  &quot;metrics&quot;: {
+    &quot;script_count&quot;: 232,
+    &quot;reference_count&quot;: 35,
+    &quot;asset_count&quot;: 6,
+    &quot;example_count&quot;: 61,
+    &quot;heading_count&quot;: 9,
+    &quot;todo_count&quot;: 0,
+    &quot;evidence_coverage&quot;: 0.8
+  }
+}</code></pre></details></section></article>
+      <aside class="metrics-aside"><article class="aside-box"><span><span data-lang="zh-CN">文件数</span><span data-lang="en">Files</span></span><strong>621</strong></article><article class="aside-box"><span><span data-lang="zh-CN">总大小</span><span data-lang="en">Total size</span></span><strong>8.4 MB</strong></article><article class="aside-box"><span><span data-lang="zh-CN">脚本数</span><span data-lang="en">Scripts</span></span><strong>232</strong></article><article class="aside-box"><span><span data-lang="zh-CN">参考资料</span><span data-lang="en">References</span></span><strong>35</strong></article><article class="aside-box"><span><span data-lang="zh-CN">风险发现</span><span data-lang="en">Findings</span></span><strong>5</strong></article><article class="aside-box"><span>SKILL.md</span><strong>805 Token</strong></article></aside>
+    </main>
+  </div>
+  <script>(function () {
+  var progressBar = document.querySelector(".progress-bar");
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".side-toc a"));
+  var sections = navLinks
+    .map(function (link) { return document.querySelector(link.getAttribute("href")); })
+    .filter(Boolean);
+
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var height = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    var pct = Math.min(100, Math.max(0, (scrollTop / height) * 100));
+    if (progressBar) progressBar.style.transform = "scaleX(" + pct / 100 + ")";
+
+    var active = sections[0];
+    sections.forEach(function (section) {
+      if (section.getBoundingClientRect().top <= 112) active = section;
+    });
+    navLinks.forEach(function (link) {
+      link.setAttribute("aria-current", active && link.getAttribute("href") === "#" + active.id ? "true" : "false");
+    });
+  }
+
+  function installCopyButtons() {
+    Array.prototype.slice.call(document.querySelectorAll("[data-copy-source]")).forEach(function (button) {
+      button.addEventListener("click", function () {
+        var target = document.querySelector(button.getAttribute("data-copy-source"));
+        if (!target || !navigator.clipboard) return;
+        navigator.clipboard.writeText(target.innerText).then(function () {
+          var old = button.innerText;
+          button.innerText = button.getAttribute("data-copied-label") || "已复制";
+          window.setTimeout(function () { button.innerText = old; }, 1200);
+        });
+      });
+    });
+  }
+
+  function setLanguage(lang) {
+    document.documentElement.lang = lang;
+    Array.prototype.slice.call(document.querySelectorAll("[data-set-lang]")).forEach(function (button) {
+      button.setAttribute("aria-pressed", button.getAttribute("data-set-lang") === lang ? "true" : "false");
+    });
+    updateProgress();
+  }
+
+  function installLanguageSwitch() {
+    var initial = document.documentElement.lang === "en" ? "en" : "zh-CN";
+    Array.prototype.slice.call(document.querySelectorAll("[data-set-lang]")).forEach(function (button) {
+      button.addEventListener("click", function () {
+        setLanguage(button.getAttribute("data-set-lang") || "zh-CN");
+      });
+    });
+    setLanguage(initial);
+  }
+
+  window.addEventListener("scroll", updateProgress, { passive: true });
+  window.addEventListener("resize", updateProgress);
+  installCopyButtons();
+  installLanguageSwitch();
+  updateProgress();
+})();
+</script>
+</body>
+</html>
