@@ -18,7 +18,6 @@ Extracted patterns:
 
 ## Local Skill Benchmarks
 
-- `learning-builder`: borrowed authority-first learning packet and Markdown-as-canonical-source export discipline.
 - `yao-tutorial-skill`: borrowed tutorial/package validation and multi-format export expectations.
 - `yao-business-skill`: borrowed evidence labels, market context, JSON/HTML artifact discipline, and source confidence framing.
 

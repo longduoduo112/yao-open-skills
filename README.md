@@ -107,7 +107,6 @@ yao-open-skills/
 ## 已发布 Skill 说明
 
 - [说明文档索引](docs/skills/README.md)
-- [Learning Builder](docs/skills/learning-builder.md)
 - [Yao Open Skills Sync](docs/skills/yao-open-skills-sync.md)
 - [Yao Bayesian Skill](docs/skills/yao-bayesian-skill.md)
 - [Yao Business Skill](docs/skills/yao-business-skill.md)
@@ -331,7 +330,6 @@ yao-open-skills/
 
 | Skill | 简体中文说明 | 主题标签 | 导航 |
 | --- | --- | --- | --- |
-| [Learning Builder](skills/learning-builder/SKILL.md)<br><sub>`learning-builder`</sub> | 根据学习者画像和权威资料生成个性化教程，支持 Markdown、DOCX、PDF 和可选学习网页扩展。 | `教育`、`教程`、`研究`、`导出` 等 | [说明](docs/skills/learning-builder.md) · [Skill](skills/learning-builder/SKILL.md) · [目录](skills/learning-builder) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/learning-builder) |
 | [Yao Bayesian Skill](skills/yao-bayesian-skill/SKILL.md)<br><sub>`yao-bayesian-skill`</sub> | 把不确定选择转成可复盘的贝叶斯决策报告，覆盖先验设定、证据分级、后验更新、行动阈值和 Markdown/HTML 输出。 | `贝叶斯`、`决策分析`、`先验校验`、`报告` 等 | [说明](docs/skills/yao-bayesian-skill.md) · [Skill](skills/yao-bayesian-skill/SKILL.md) · [目录](skills/yao-bayesian-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-bayesian-skill) |
 | [Yao Business Skill](skills/yao-business-skill/SKILL.md)<br><sub>`yao-business-skill`</sub> | 围绕商业模式设计、诊断和案例研究，输出市场环境适配、竞品分析、图表报告和 AI 时代升级建议。 | `商业模式`、`战略`、`诊断`、`竞争` 等 | [说明](docs/skills/yao-business-skill.md) · [Skill](skills/yao-business-skill/SKILL.md) · [目录](skills/yao-business-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-business-skill) |
 | [Yao Copyright Skill](skills/yao-copyright-skill/SKILL.md)<br><sub>`yao-copyright-skill`</sub> | 为 Skill 包批量添加姚金刚版权注释，并避免破坏 SKILL.md frontmatter、脚本 shebang 和不适合注释的文件。 | `版权`、`Skill`、`发布`、`自动化` 等 | [说明](docs/skills/yao-copyright-skill.md) · [Skill](skills/yao-copyright-skill/SKILL.md) · [目录](skills/yao-copyright-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-copyright-skill) |

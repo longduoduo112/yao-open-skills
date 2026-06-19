@@ -105,7 +105,6 @@ CATEGORIES = [
 
 
 CATEGORY_BY_SLUG = {
-    "learning-builder": "learning-content",
     "yao-bayesian-skill": "decision-strategy",
     "yao-business-skill": "business-research",
     "yao-copyright-skill": "engineering-governance",

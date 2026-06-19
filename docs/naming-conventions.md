@@ -165,7 +165,7 @@
 
 不推荐：
 
-- `skill-learning-builder`
+- `skill-tutorial-builder`
 - `skill-note-cleanup`
 
 原因：
@@ -178,7 +178,7 @@
 不推荐：
 
 - `yao-open-skills-sync`
-- `yao-learning-builder`
+- `yao-tutorial-builder`
 
 原因：
 
@@ -207,7 +207,7 @@
 
 不推荐：
 
-- `personalized-authoritative-learning-builder`
+- `personalized-authoritative-tutorial-builder`
 - `advanced-multi-format-study-guide-generator`
 
 原因：
@@ -230,16 +230,12 @@
 
 ## 7. 当前仓库中的应用建议
 
-### 可接受的简洁名字
+### 内容生成类命名
 
-- `learning-builder`
-
-这个名字目前可用，简洁，也保留了后续扩展空间。
-
-如果未来需要新起同类名字，优先考虑更短版本，例如：
+如果未来需要新起学习或教程类名字，优先考虑短而结果明确的版本，例如：
 
 - `tutorial-builder`
-- `learning-guide-builder`
+- `guide-builder`
 - `tutorial-writer`
 
 ### 仓库治理类技能

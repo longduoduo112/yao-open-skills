@@ -3,28 +3,6 @@
   "updated_at": "2026-06-19",
   "skills": [
     {
-      "slug": "learning-builder",
-      "title": "Learning Builder",
-      "summary": "根据学习者画像和权威资料生成个性化教程，支持 Markdown、DOCX、PDF 和可选学习网页扩展。",
-      "source_local_path": "/Users/laoyao/AI Coding/03-Development/Skills/learning-builder",
-      "collection_path": "skills/learning-builder",
-      "lifecycle": "active",
-      "sync_status": "published",
-      "github_repo": "yao-open-skills",
-      "github_url": "https://github.com/yaojingang/yao-open-skills/tree/main/skills/learning-builder",
-      "guide_path": "docs/skills/learning-builder.md",
-      "license": "MIT",
-      "tags": [
-        "education",
-        "tutorials",
-        "research",
-        "export",
-        "personalization"
-      ],
-      "last_synced_at": "2026-04-09",
-      "updated_at": "2026-06-13"
-    },
-    {
       "slug": "yao-bayesian-skill",
       "title": "Yao Bayesian Skill",
       "summary": "把不确定选择转成可复盘的贝叶斯决策报告，覆盖先验设定、证据分级、后验更新、行动阈值和 Markdown/HTML 输出。",
