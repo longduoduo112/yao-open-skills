@@ -15,6 +15,7 @@ Current guides:
 - [yao-copyright-skill](yao-copyright-skill.md)
 - [yao-crux-skill](yao-crux-skill.md)
 - [yao-demand-skill](yao-demand-skill.md)
+- [yao-doctor-skill](yao-doctor-skill.md)
 - [yao-expert-skill](yao-expert-skill.md)
 - [yao-gametheory-skill](yao-gametheory-skill.md)
 - [yao-interpreter-skill](yao-interpreter-skill.md)

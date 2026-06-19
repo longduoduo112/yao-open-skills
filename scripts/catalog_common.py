@@ -111,6 +111,7 @@ CATEGORY_BY_SLUG = {
     "yao-copyright-skill": "engineering-governance",
     "yao-crux-skill": "decision-strategy",
     "yao-demand-skill": "business-research",
+    "yao-doctor-skill": "engineering-governance",
     "yao-expert-skill": "business-research",
     "yao-gametheory-skill": "decision-strategy",
     "yao-interpreter-skill": "engineering-governance",

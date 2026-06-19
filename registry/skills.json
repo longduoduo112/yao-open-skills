@@ -1,6 +1,6 @@
 {
   "repo_name": "yao-open-skills",
-  "updated_at": "2026-06-17",
+  "updated_at": "2026-06-19",
   "skills": [
     {
       "slug": "learning-builder",
@@ -143,6 +143,31 @@
       ],
       "last_synced_at": "2026-06-12",
       "updated_at": "2026-06-13"
+    },
+    {
+      "slug": "yao-doctor-skill",
+      "title": "Yao Doctor Skill",
+      "summary": "审计本地 Skill 库和 AI 工作台配置面，区分能力风险与不安全行为，发现隐私、凭据、外发、远程执行和持久化风险，并生成中英双语 HTML 安全报告。",
+      "source_local_path": "/Users/laoyao/AI Coding/03-Development/Skills/yao-doctor-skill",
+      "collection_path": "skills/yao-doctor-skill",
+      "lifecycle": "active",
+      "sync_status": "published",
+      "github_repo": "yao-open-skills",
+      "github_url": "https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-doctor-skill",
+      "guide_path": "docs/skills/yao-doctor-skill.md",
+      "license": "MIT",
+      "tags": [
+        "skills",
+        "security",
+        "audit",
+        "ai-security",
+        "reporting",
+        "html",
+        "validation",
+        "governance"
+      ],
+      "last_synced_at": "2026-06-19",
+      "updated_at": "2026-06-19"
     },
     {
       "slug": "yao-expert-skill",

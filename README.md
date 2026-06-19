@@ -43,13 +43,13 @@
 
 这部分展示的是 `OpenYao` 计划长期建设的能力线，风格上会尽量保持“功能导向 + 动词感”，避免命名体系散掉。
 
-**Skill Doctor**，自动诊断并修复 Skill 中的问题。
+**Skill Doctor**，诊断 Skill 和 AI 工作台配置面的安全风险，已作为 [`yao-doctor-skill`](docs/skills/yao-doctor-skill.md) 收录。
 
 **Skill Optimizer**，优化 Skill 的结构、执行效果和可维护性。
 
 **Skill Ranker**，基于真实效果评估和排序 Skill。
 
-这些名称代表的是产品方向，不等于它们现在都已经作为独立 Skill 收录进仓库。当前仓库会把“已发布能力”和“规划中的能力线”区分开维护。
+这些名称代表的是产品方向，不等于它们现在都已经全部作为独立 Skill 收录进仓库。当前仓库会把“已发布能力”和“规划中的能力线”区分开维护。
 
 ## 推荐入口
 
@@ -114,6 +114,7 @@ yao-open-skills/
 - [Yao Copyright Skill](docs/skills/yao-copyright-skill.md)
 - [Yao Crux Skill](docs/skills/yao-crux-skill.md)
 - [Yao Demand Skill](docs/skills/yao-demand-skill.md)
+- [Yao Doctor Skill](docs/skills/yao-doctor-skill.md)
 - [Yao Expert Skill](docs/skills/yao-expert-skill.md)
 - [Yao Game Theory Skill](docs/skills/yao-gametheory-skill.md)
 - [Yao Kelly Skill](docs/skills/yao-kelly-skill.md)
@@ -336,6 +337,7 @@ yao-open-skills/
 | [Yao Copyright Skill](skills/yao-copyright-skill/SKILL.md)<br><sub>`yao-copyright-skill`</sub> | 为 Skill 包批量添加姚金刚版权注释，并避免破坏 SKILL.md frontmatter、脚本 shebang 和不适合注释的文件。 | `版权`、`Skill`、`发布`、`自动化` 等 | [说明](docs/skills/yao-copyright-skill.md) · [Skill](skills/yao-copyright-skill/SKILL.md) · [目录](skills/yao-copyright-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-copyright-skill) |
 | [Yao Crux Skill](skills/yao-crux-skill/SKILL.md)<br><sub>`yao-crux-skill`</sub> | 诊断复杂局面的主次矛盾，澄清现状、识别根部变量、给出主攻行动和结果概率，并导出 Markdown、HTML、DOCX、PDF 报告。 | `决策分析`、`主要矛盾`、`诊断`、`第一性原理` 等 | [说明](docs/skills/yao-crux-skill.md) · [Skill](skills/yao-crux-skill/SKILL.md) · [目录](skills/yao-crux-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-crux-skill) |
 | [Yao Demand Skill](skills/yao-demand-skill/SKILL.md)<br><sub>`yao-demand-skill`</sub> | 用需求三角模型评估产品需求，结合证据分级、短板评分、可视化诊断、情景预测和多格式报告输出。 | `需求分析`、`产品`、`验证`、`可视化报告` 等 | [说明](docs/skills/yao-demand-skill.md) · [Skill](skills/yao-demand-skill/SKILL.md) · [目录](skills/yao-demand-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-demand-skill) |
+| [Yao Doctor Skill](skills/yao-doctor-skill/SKILL.md)<br><sub>`yao-doctor-skill`</sub> | 审计本地 Skill 库和 AI 工作台配置面，区分能力风险与不安全行为，发现隐私、凭据、外发、远程执行和持久化风险，并生成中英双语 HTML 安全报告。 | `Skill`、`安全`、`审查`、`AI 安全` 等 | [说明](docs/skills/yao-doctor-skill.md) · [Skill](skills/yao-doctor-skill/SKILL.md) · [目录](skills/yao-doctor-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-doctor-skill) |
 | [Yao Expert Skill](skills/yao-expert-skill/SKILL.md)<br><sub>`yao-expert-skill`</sub> | 把行业、技术、市场、角色或模糊方向整理成专家学习报告和教程，包含关键词教学卡、学习锚点、费曼自测和多格式导出。 | `专家学习`、`研究`、`行业分析`、`教程` 等 | [说明](docs/skills/yao-expert-skill.md) · [Skill](skills/yao-expert-skill/SKILL.md) · [目录](skills/yao-expert-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-expert-skill) |
 | [Yao Game Theory Skill](skills/yao-gametheory-skill/SKILL.md)<br><sub>`yao-gametheory-skill`</sub> | 把竞争、谈判、渠道、定价、平台、并购、融资和监管问题转成博弈论战略报告，分析对手反应、可信承诺和策略稳健性。 | `博弈论`、`战略`、`竞争`、`谈判` 等 | [说明](docs/skills/yao-gametheory-skill.md) · [Skill](skills/yao-gametheory-skill/SKILL.md) · [目录](skills/yao-gametheory-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-gametheory-skill) |
 | [Yao Interpreter Skill](skills/yao-interpreter-skill/SKILL.md)<br><sub>`yao-interpreter-skill`</sub> | 静态解读 Agent Skill 目录、SKILL.md 或安全 zip，输出中文优先的双语 HTML 报告、证据链评分、风险审查和改进路线。 | `Skill`、`审查`、`证据`、`报告` 等 | [说明](docs/skills/yao-interpreter-skill.md) · [Skill](skills/yao-interpreter-skill/SKILL.md) · [目录](skills/yao-interpreter-skill) · [GitHub](https://github.com/yaojingang/yao-open-skills/tree/main/skills/yao-interpreter-skill) |
